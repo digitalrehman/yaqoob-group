@@ -96,6 +96,8 @@ import CostCenterScreen from '../screens/main/stacks/Sales/CostCenterScreen';
 import ApprovedRecordsScreen from '../screens/main/stacks/Sales/ApprovedRecordsScreen';
 import HCMScreen from '../screens/main/stacks/HCM/HCMScreen';
 import DVRInquiry from '../screens/main/stacks/HCM/DVRInquiry';
+import HCMNewOrders from '../screens/main/stacks/HCM/HCMNewOrders';
+import HCMInsertNewCustomer from '../screens/main/stacks/HCM/HCMInsertNewCustomer';
 
 const Stack = createNativeStackNavigator();
 const Main = () => {
@@ -235,6 +237,11 @@ const Main = () => {
       />
       <Stack.Screen name="HCMScreen" component={HCMScreen} />
       <Stack.Screen name="DVRInquiry" component={DVRInquiry} />
+      <Stack.Screen name="HCMNewOrders" component={HCMNewOrders} />
+      <Stack.Screen
+        name="HCMInsertNewCustomer"
+        component={HCMInsertNewCustomer}
+      />
     </Stack.Navigator>
   );
 };

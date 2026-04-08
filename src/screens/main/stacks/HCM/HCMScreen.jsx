@@ -47,6 +47,13 @@ export default function HCMScreen({navigation}) {
       color: '#10B981',
       accessKey: 'hcm_local_purchase',
     },
+    {
+      name: 'New Orders',
+      icon: 'account-multiple-plus',
+      screen: 'HCMNewOrders',
+      color: '#6366F1',
+      accessKey: 'hcm_new_orders',
+    },
   ];
 
   const renderButton = ({item, index}) => {
