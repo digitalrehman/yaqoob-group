@@ -1,9 +1,8 @@
 import { View, TouchableOpacity, Platform } from 'react-native';
 import React from 'react';
-import PlatformGradient from './PlatformGradient';
-import { responsiveFontSize, responsiveHeight } from '../utils/Responsive';
-import { APPCOLORS } from '../utils/APPCOLORS';
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from '../utils/Responsive';
 import AppText from './AppText';
+import { ThemeColors } from '../config/Theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -25,109 +24,92 @@ const AppHeader = ({ title, onPress }) => {
       : insets.top + 15; // Android ke liye extra padding
 
   return (
-    <PlatformGradient
-      colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
+    <View
       style={{
         paddingTop: paddingTop,
         paddingHorizontal: 20,
-        paddingBottom: Platform.OS === 'android' ? 10 : 0, // Android ke liye extra padding
+        paddingBottom: 25,
+        backgroundColor: ThemeColors.Primary,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+        elevation: 6,
+        shadowColor: ThemeColors.Primary,
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
       }}>
-      {/* --- Top Icons Row --- */}
+      
+      {/* Top Welcome & Brand Row */}
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+        <View>
+          <AppText
+            title="Yaqoob Group"
+            titleColor={ThemeColors.TextLight}
+            titleSize={1.4}
+          />
+          <AppText
+            title={`Welcome back, ${userData?.real_name || 'User'}!`}
+            titleColor={ThemeColors.TextLight}
+            titleSize={2}
+            titleWeight
+          />
+        </View>
+        <View
+            style={{
+              height: 40,
+              width: 40,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: ThemeColors.Surface,
+              borderRadius: 20,
+            }}>
+            <AppText title="MA" titleColor={ThemeColors.Primary} titleWeight/>
+        </View>
+      </View>
+
+      {/* Action Icons Row */}
       <View
         style={{
           flexDirection: 'row',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
           alignItems: 'center',
-          marginTop: 20,
+          gap: 15,
         }}>
-        <AppText
-          title="Yaqoob Group"
-          titleColor={APPCOLORS.WHITE}
-          titleSize={3}
-          titleWeight
-        />
-
-        <View style={{ flexDirection: 'row', gap: 10 }}>
-          <TouchableOpacity onPress={() => onPress?.('bell')}>
+          <TouchableOpacity onPress={() => onPress?.('bell')} style={{ padding: 5 }}>
             <FontAwesome
               name="bell"
-              color={APPCOLORS.WHITE}
-              size={responsiveFontSize(2.5)}
+              color={ThemeColors.TextLight}
+              size={20}
             />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => onPress?.('mail')}>
+          <TouchableOpacity onPress={() => onPress?.('mail')} style={{ padding: 5 }}>
             <Entypo
               name="mail"
-              color={APPCOLORS.WHITE}
-              size={responsiveFontSize(2.5)}
+              color={ThemeColors.TextLight}
+              size={20}
             />
           </TouchableOpacity>
 
-          <View
-            style={{
-              height: responsiveHeight(2),
-              backgroundColor: APPCOLORS.WHITE,
-              width: 1,
-            }}
-          />
+          <View style={{ height: 15, backgroundColor: 'rgba(255,255,255,0.4)', width: 1 }} />
 
-          <TouchableOpacity onPress={() => nav.navigate('ProfitAndLossScreen')}>
+          <TouchableOpacity onPress={() => nav.navigate('ProfitAndLossScreen')} style={{ padding: 5 }}>
             <Ionicons
               name="person"
-              color={APPCOLORS.WHITE}
-              size={responsiveFontSize(2.5)}
+              color={ThemeColors.TextLight}
+              size={20}
             />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => dispatch(setLogout())}>
+          <TouchableOpacity onPress={() => dispatch(setLogout())} style={{ padding: 5 }}>
             <AntDesign
               name="poweroff"
-              color={'yellow'}
-              size={responsiveFontSize(2.5)}
+              color={ThemeColors.Surface}
+              size={20}
             />
           </TouchableOpacity>
-        </View>
       </View>
-
-      {/* --- Profile and Balance Section --- */}
-      <View
-        style={{
-          height: responsiveHeight(15),
-          justifyContent: 'space-between',
-          paddingTop: 30,
-        }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-          <View
-            style={{
-              height: responsiveHeight(5),
-              width: responsiveHeight(5),
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderWidth: 2,
-              borderRadius: 200,
-              borderColor: APPCOLORS.WHITE,
-            }}>
-            <AppText title="MA" titleColor={APPCOLORS.WHITE} />
-          </View>
-
-          <View>
-            <AppText
-              title={userData?.real_name || 'User'}
-              titleColor={APPCOLORS.WHITE}
-              titleSize={2}
-            />
-            <AppText
-              title="Dashboard"
-              titleColor={APPCOLORS.WHITE}
-              titleSize={1.5}
-            />
-          </View>
-        </View>
-      </View>
-    </PlatformGradient>
+    </View>
   );
 };
 

@@ -1,14 +1,13 @@
 import React from 'react';
-import { Platform, View, ViewStyle } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { View, ViewStyle } from 'react-native';
 
 interface PlatformGradientProps {
-  colors: string[];
+  colors?: string[];
   start?: { x: number; y: number };
   end?: { x: number; y: number };
   style?: ViewStyle | ViewStyle[];
   children?: React.ReactNode;
-  [key: string]: any; // Allow other props to pass through
+  [key: string]: any;
 }
 
 const PlatformGradient: React.FC<PlatformGradientProps> = ({
@@ -19,26 +18,11 @@ const PlatformGradient: React.FC<PlatformGradientProps> = ({
   children,
   ...otherProps
 }) => {
-  if (Platform.OS === 'ios') {
-    // On iOS, use solid color (first color from gradient)
-    const backgroundColor = colors && colors.length > 0 ? colors[0] : '#000000';
-    return (
-      <View style={[{ backgroundColor }, style]} {...otherProps}>
-        {children}
-      </View>
-    );
-  }
-
-  // On Android, use full gradient
+  // Globally enforcing the solid Orange (#E87F24) primary theme instead of gradients
   return (
-    <LinearGradient
-      colors={colors}
-      start={start || { x: 0, y: 0 }}
-      end={end || { x: 1, y: 0 }}
-      style={style}
-      {...otherProps}>
+    <View style={[{ backgroundColor: '#E87F24' }, style]} {...otherProps}>
       {children}
-    </LinearGradient>
+    </View>
   );
 };
 

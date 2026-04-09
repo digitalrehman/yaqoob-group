@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import PlatformGradient from '../../../../components/PlatformGradient';
 import axios from 'axios';
 import LottieView from 'lottie-react-native';
@@ -20,7 +19,6 @@ import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {APPCOLORS} from '../../../../utils/APPCOLORS';
-import {responsiveWidth} from '../../../../utils/Responsive';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const HCMNewOrders = ({navigation}) => {
@@ -130,17 +128,21 @@ const HCMNewOrders = ({navigation}) => {
 
       {/* Buttons Row 1 */}
       <View style={styles.buttonRow}>
-        <TouchableOpacity style={styles.gradientButton}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate('HCMOrderForm', {customer: item, mode: 'Order'})}
+          style={styles.gradientButton}>
           <PlatformGradient
-            colors={['#1a1c22', '#434343']}
+            colors={['#E87F24', '#F39C12']}
             style={styles.gradientInside}>
             <Text style={styles.buttonText}>Take Order</Text>
           </PlatformGradient>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.gradientButton}>
+        <TouchableOpacity 
+          onPress={() => navigation.navigate('HCMOrderForm', {customer: item, mode: 'Return'})}
+          style={styles.gradientButton}>
           <PlatformGradient
-            colors={['#1a1c22', '#434343']}
+            colors={['#E87F24', '#F39C12']}
             style={styles.gradientInside}>
             <Text style={styles.buttonText}>Return</Text>
           </PlatformGradient>
@@ -149,9 +151,12 @@ const HCMNewOrders = ({navigation}) => {
 
       {/* Buttons Row 2 + Stats */}
       <View style={styles.bottomRow}>
-        <TouchableOpacity style={styles.paymentButton}>
+        <TouchableOpacity 
+          style={styles.paymentButton}
+          onPress={() => navigation.navigate('HCMPaymentScreen', { customer: item })}
+        >
           <PlatformGradient
-            colors={['#1a1c22', '#434343']}
+            colors={['#E87F24', '#F39C12']}
             style={styles.paymentGradient}>
             <Text style={styles.buttonText}>Payment</Text>
           </PlatformGradient>
@@ -184,16 +189,19 @@ const HCMNewOrders = ({navigation}) => {
           paddingHorizontal: 16,
           paddingBottom: 15,
           paddingTop: Platform.OS === 'ios' ? insets.top + 25 : insets.top + 30,
-          backgroundColor: '#1a1c22',
+          backgroundColor: '#E87F24',
+          borderBottomLeftRadius: 15,
+          borderBottomRightRadius: 15,
+          elevation: 5,
         }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.headerIconButton}>
-          <Ionicons name="arrow-back" size={20} color="#333" />
+          <Ionicons name="arrow-back" size={20} color="#E87F24" />
         </TouchableOpacity>
 
         <PlatformGradient
-          colors={['#000000', '#434343']}
+          colors={['#F39C12', '#F1C40F']}
           start={{x: 0, y: 0}}
           end={{x: 1, y: 1}}
           style={styles.searchBarGradient}>
@@ -205,7 +213,7 @@ const HCMNewOrders = ({navigation}) => {
           />
           <TextInput
             placeholder="Search"
-            placeholderTextColor="#aaa"
+            placeholderTextColor="#fff"
             style={styles.searchInput}
             onChangeText={txt => setSearch(txt)}
             value={Search}
@@ -218,8 +226,8 @@ const HCMNewOrders = ({navigation}) => {
               onSuccess: () => getAllOrders(),
             })
           }
-          style={[styles.headerIconButton, {backgroundColor: APPCOLORS.Secondary}]}>
-          <Ionicons name="person-add" size={20} color="#fff" />
+          style={styles.headerIconButton}>
+          <Ionicons name="person-add" size={20} color="#E87F24" />
         </TouchableOpacity>
       </View>
 
@@ -249,7 +257,7 @@ const HCMNewOrders = ({navigation}) => {
             )}
             ListFooterComponent={() =>
               loadermore ? (
-                <ActivityIndicator size="small" color="#1a1c22" />
+                <ActivityIndicator size="small" color="#E87F24" />
               ) : null
             }
           />
@@ -272,7 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#E0E5EC',
+    backgroundColor: '#fff',
     elevation: 3,
   },
   searchBarGradient: {

@@ -16,8 +16,8 @@ import {
 import PlatformGradient from '../../components/PlatformGradient';
 import DashboardTabs from '../../components/DashboardTabs';
 import AppText from '../../components/AppText';
-
 import AppHeader from '../../components/AppHeader';
+import {ThemeColors} from '../../config/Theme';
 import {AppImages} from '../../assets/images/AppImages';
 import Modal from 'react-native-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -191,7 +191,7 @@ const Dashboard = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: APPCOLORS.LIGHTGRAY}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Background}}>
       <AppHeader
         title={'Dashboard'}
         onPress={res => {
@@ -227,19 +227,24 @@ const Dashboard = ({navigation}) => {
               borderRadius: 20,
               padding: 20,
             }}>
-            <PlatformGradient
-              colors={['#1D4452', '#4199B8']}
+            <View
               style={{
                 padding: 20,
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                borderRadius: 25,
+                borderRadius: 20,
                 alignItems: 'center',
+                backgroundColor: ThemeColors.Primary,
+                elevation: 4,
+                shadowColor: '#000',
+                shadowOffset: {width: 0, height: 2},
+                shadowOpacity: 0.2,
+                shadowRadius: 4,
               }}>
               <TouchableOpacity onPress={() => setVisible(false)}>
                 <AntDesign
                   name={'close'}
-                  color={APPCOLORS.WHITE}
+                  color={ThemeColors.TextLight}
                   size={responsiveFontSize(2)}
                 />
               </TouchableOpacity>
@@ -254,13 +259,13 @@ const Dashboard = ({navigation}) => {
                     ? 'Outstanding Cheque'
                     : null
                 }
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextLight}
                 titleSize={2}
                 titleWeight
               />
 
               <View />
-            </PlatformGradient>
+            </View>
 
             <FlatList
               data={
@@ -283,41 +288,48 @@ const Dashboard = ({navigation}) => {
                     style={{
                       padding: 20,
                       width: responsiveWidth(80),
-                      backgroundColor: APPCOLORS.DARKLIGHTBLUE,
-                      borderRadius: 10,
+                      backgroundColor: ThemeColors.Surface,
+                      borderRadius: 12,
                       flexDirection: 'row',
                       alignItems: 'center',
                       justifyContent: 'space-between',
+                      borderWidth: 1,
+                      borderColor: ThemeColors.Border,
+                      elevation: 1,
+                      shadowColor: '#000',
+                      shadowOffset: { width: 0, height: 1 },
+                      shadowOpacity: 0.05,
+                      shadowRadius: 3,
                     }}>
                     <View>
                       <AppText
                         title={'Name'}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMuted}
                         titleWeight
-                        titleSize={2}
-                        titleSizeWeight={40}
+                        titleSize={1.5}
                       />
                       <AppText
                         title={item?.name}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMain}
                         titleWeight
-                        titleSize={1.7}
-                        titleSizeWeight={40}
+                        titleSize={2}
                       />
                     </View>
 
                     <View>
                       <AppText
                         title={'Amount'}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMuted}
                         titleWeight
-                        titleSize={2}
+                        titleSize={1.5}
+                        titleAlignment="right"
                       />
                       <AppText
                         title={formatNumber(item?.total)}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.Primary}
                         titleWeight
-                        titleSize={1.8}
+                        titleSize={2}
+                        titleAlignment="right"
                       />
                     </View>
                   </View>
@@ -332,9 +344,11 @@ const Dashboard = ({navigation}) => {
           style={{
             flexDirection: 'row',
             flexWrap: 'wrap',
-            gap: 10,
-            justifyContent: 'center',
-            marginTop: 20,
+            justifyContent: 'space-between',
+            alignSelf: 'center',
+            width: responsiveWidth(92),
+            gap: 12,
+            marginTop: 25,
           }}>
           {getDisplayCards().map(item => (
             <DashboardTabs
@@ -368,7 +382,7 @@ const Dashboard = ({navigation}) => {
           <AppText
             title="Announcement"
             titleSize={2.5}
-            titleColor={APPCOLORS.BLACK}
+            titleColor={ThemeColors.TextMain}
             titleWeight
           />
         </View>
@@ -379,32 +393,35 @@ const Dashboard = ({navigation}) => {
           contentContainerStyle={{gap: 20, paddingLeft: 10, marginTop: 10}}
           renderItem={({item}) => {
             return (
-              <PlatformGradient
-                colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
+              <View
                 style={{
                   height: responsiveHeight(18),
                   width: responsiveWidth(80),
-                  backgroundColor: APPCOLORS.BarColor,
-                  borderRadius: 10,
+                  backgroundColor: ThemeColors.Primary,
+                  borderRadius: 20,
                   padding: 20,
-                  gap: 20,
+                  justifyContent: 'center',
+                  gap: 15,
+                  elevation: 6,
+                  shadowColor: ThemeColors.Primary,
+                  shadowOffset: { width: 0, height: 4 },
+                  shadowOpacity: 0.3,
+                  shadowRadius: 6,
                 }}>
                 <AppText
                   title="🎉 New Feature Release"
-                  titleColor={APPCOLORS.WHITE}
-                  titleSize={2}
+                  titleColor={ThemeColors.TextLight}
+                  titleSize={2.2}
                   titleWeight
                 />
-                <View style={{width: responsiveWidth(60)}}>
+                <View style={{width: responsiveWidth(70)}}>
                   <AppText
                     title='Inventory tracking has been enhanced! Check it out under the "Warehouse" module.'
-                    titleColor={APPCOLORS.WHITE}
-                    titleSize={1.7}
+                    titleColor={ThemeColors.TextLight}
+                    titleSize={1.6}
                   />
                 </View>
-              </PlatformGradient>
+              </View>
             );
           }}
         />

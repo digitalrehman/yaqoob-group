@@ -21,8 +21,8 @@ import {formatNumber} from '../../../../utils/NumberUtils';
 const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
+  Primary: '#E87F24',
+  Secondary: '#F39C12',
   Background: '#F3F4F6',
   Border: '#E2E8F0',
   TextDark: '#1E293B',

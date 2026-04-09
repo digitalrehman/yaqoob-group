@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     color: COLORS.TEXT_DARK,
   },
   applyBtn: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     width: 40,
     height: 36,
     borderRadius: 8,

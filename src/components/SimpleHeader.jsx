@@ -4,7 +4,7 @@ import AppText from './AppText';
 import {APPCOLORS} from '../utils/APPCOLORS';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {responsiveFontSize, responsiveHeight} from '../utils/Responsive';
-import PlatformGradient from './PlatformGradient';
+import {ThemeColors} from '../config/Theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
@@ -16,15 +16,22 @@ const SimpleHeader = ({title}) => {
   const paddingBottom = Platform.OS === 'ios' ? 20 : 25;
 
   return (
-    <PlatformGradient
-      colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
+    <View
       style={{
+        backgroundColor: ThemeColors.Primary,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 20,
         paddingTop: paddingTop,
         paddingBottom: paddingBottom,
+        elevation: 6,
+        shadowColor: ThemeColors.Primary,
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 15,
       }}>
       <TouchableOpacity onPress={() => nav.goBack()}>
         <Ionicons
@@ -48,7 +55,7 @@ const SimpleHeader = ({title}) => {
           color={APPCOLORS.WHITE}
         />
       </TouchableOpacity>
-    </PlatformGradient>
+    </View>
   );
 };
 

@@ -23,8 +23,8 @@ import {formatNumber} from '../../../../utils/NumberUtils';
 const COLORS = {
   WHITE: '#FFFFFF',
   BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
+  Primary: '#E87F24',
+  Secondary: '#F39C12',
   Background: '#F3F4F6',
   Border: '#E2E8F0',
   TextDark: '#1E293B',
@@ -68,7 +68,7 @@ const Detail = ({navigation}) => {
   const revData = [
     {
       id: 6,
-      title: 'Short term loan',
+      title: 'Cheque',
       accessKey: 'cash',
       Amount: slider_data?.short_term_loan,
       Prev_title: 'Previous Month',
@@ -402,9 +402,9 @@ let styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginBottom: 12,
-    color: '#1E293B',
+    color: '#E87F24',
     borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
+    borderBottomColor: '#E87F24',
     paddingBottom: 10,
   },
   row: {
@@ -422,9 +422,9 @@ let styles = StyleSheet.create({
   },
   cell: {
     fontSize: 15,
-    color: '#1E293B',
+    color: '#E87F24',
     textAlign: 'right',
-    fontWeight: '600',
+    fontWeight: '700',
   },
   rowAmount: {
     fontSize: 15,
@@ -510,7 +510,7 @@ let styles = StyleSheet.create({
     fontWeight: '500',
   },
   applyBtn: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     width: 40,
     height: 40,
     borderRadius: 10,
@@ -528,7 +528,7 @@ let styles = StyleSheet.create({
     alignItems: 'center',
   },
   securityBtn: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     marginHorizontal: 15,
     height: 50,
     borderRadius: 12,

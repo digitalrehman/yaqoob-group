@@ -34,7 +34,6 @@ import InsertNewCustomerDetail from '../screens/otherappflow/main/InsertNewCusto
 import Incentive from '../screens/otherappflow/main/Incentive';
 
 import AddItems from '../screens/otherappflow/main/AddItems';
-import ItemList from '../screens/otherappflow/main/ItemList';
 import PaymentScreen from '../screens/otherappflow/main/PaymentScreen';
 import Profile from '../screens/otherappflow/main/Profile';
 import NewOrders from '../screens/otherappflow/main/NewOrders';
@@ -98,6 +97,8 @@ import HCMScreen from '../screens/main/stacks/HCM/HCMScreen';
 import DVRInquiry from '../screens/main/stacks/HCM/DVRInquiry';
 import HCMNewOrders from '../screens/main/stacks/HCM/HCMNewOrders';
 import HCMInsertNewCustomer from '../screens/main/stacks/HCM/HCMInsertNewCustomer';
+import HCMOrderForm from '../screens/main/stacks/HCM/HCMOrderForm';
+import HCMPaymentScreen from '../screens/main/stacks/HCM/HCMPaymentScreen';
 
 const Stack = createNativeStackNavigator();
 const Main = () => {
@@ -165,7 +166,6 @@ const Main = () => {
       />
       <Stack.Screen name="Incentive" component={Incentive} />
       <Stack.Screen name="AddItems" component={AddItems} />
-      <Stack.Screen name="ItemList" component={ItemList} />
       <Stack.Screen name="PaymentScreen" component={PaymentScreen} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="NewOrders" component={NewOrders} />
@@ -242,6 +242,8 @@ const Main = () => {
         name="HCMInsertNewCustomer"
         component={HCMInsertNewCustomer}
       />
+      <Stack.Screen name="HCMOrderForm" component={HCMOrderForm} />
+      <Stack.Screen name="HCMPaymentScreen" component={HCMPaymentScreen} />
     </Stack.Navigator>
   );
 };

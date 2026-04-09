@@ -269,7 +269,7 @@ const SecurityRule = () => {
             <ActivityIndicator size="large" color="#1a1c22" />
           ) : (
             <Dropdown
-              style={[styles.dropdown, isFocus && {borderColor: '#1a1c22'}]}
+              style={[styles.dropdown, isFocus && {borderColor: '#E87F24'}]}
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
               inputSearchStyle={styles.inputSearchStyle}
@@ -313,7 +313,7 @@ const SecurityRule = () => {
                           isChecked(module.id) ? 'checkbox' : 'square-outline'
                         }
                         size={24}
-                        color={isChecked(module.id) ? '#1a1c22' : '#64748B'}
+                        color={isChecked(module.id) ? '#E87F24' : '#64748B'}
                       />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -346,7 +346,7 @@ const SecurityRule = () => {
                                   : 'square-outline'
                               }
                               size={22}
-                              color={isChecked(item.id) ? '#1a1c22' : '#64748B'}
+                              color={isChecked(item.id) ? '#E87F24' : '#64748B'}
                             />
                           </TouchableOpacity>
                           <Text style={styles.itemName}>{item.name}</Text>
@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   saveBtn: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     marginHorizontal: 15,
     marginTop: 30,
     height: 55,
