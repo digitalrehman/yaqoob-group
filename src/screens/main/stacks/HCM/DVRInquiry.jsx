@@ -13,7 +13,7 @@ import {
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import AppText from '../../../../components/AppText';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+import {ThemeColors} from '../../../../config/Theme';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -135,7 +135,7 @@ const DVRInquiry = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={() => fetchHistory(selectedDay)}
-            colors={[APPCOLORS.Primary]}
+            colors={[ThemeColors.Primary]}
           />
         }>
         {/* Calendar Picker Section */}
@@ -145,7 +145,7 @@ const DVRInquiry = () => {
               <FontAwesome
                 name="chevron-left"
                 size={16}
-                color={APPCOLORS.Primary}
+                color={ThemeColors.Primary}
               />
             </TouchableOpacity>
 
@@ -157,14 +157,14 @@ const DVRInquiry = () => {
                 )} ${currentYear}`}
                 titleWeight
                 titleSize={2}
-                titleColor={APPCOLORS.Primary}
+                titleColor={ThemeColors.Primary}
               />
               <View style={styles.todayIndicator}>
                 <View style={styles.todayDot} />
                 <AppText
                   title="Month Log"
                   titleSize={1.4}
-                  titleColor={APPCOLORS.GRAY}
+                  titleColor={ThemeColors.TextMuted}
                 />
               </View>
             </View>
@@ -173,7 +173,7 @@ const DVRInquiry = () => {
               <FontAwesome
                 name="chevron-right"
                 size={16}
-                color={APPCOLORS.Primary}
+                color={ThemeColors.Primary}
               />
             </TouchableOpacity>
           </View>
@@ -194,7 +194,7 @@ const DVRInquiry = () => {
                   ]}>
                   <AppText
                     title={day.toString()}
-                    titleColor={isSelected ? APPCOLORS.WHITE : APPCOLORS.BLACK}
+                    titleColor={isSelected ? ThemeColors.Surface : ThemeColors.TextMain}
                     titleSize={1.6}
                     titleWeight={isSelected || isToday}
                   />
@@ -213,14 +213,14 @@ const DVRInquiry = () => {
             ).toLocaleString('default', {month: 'long'})} Logs`}
             titleSize={1.8}
             titleWeight
-            titleColor={APPCOLORS.BLACK}
+            titleColor={ThemeColors.TextMain}
             style={{marginBottom: 15}}
           />
 
           {loading && !refreshing ? (
             <ActivityIndicator
               size="large"
-              color={APPCOLORS.Primary}
+              color={ThemeColors.Primary}
               style={{marginTop: 20}}
             />
           ) : history.length === 0 ? (
@@ -229,7 +229,7 @@ const DVRInquiry = () => {
               <AppText
                 title="No records found for this date."
                 titleSize={1.4}
-                titleColor={APPCOLORS.GRAY}
+                titleColor={ThemeColors.TextMuted}
                 style={{marginTop: 10}}
               />
             </View>
@@ -245,13 +245,13 @@ const DVRInquiry = () => {
                     <FontAwesome
                       name="clock-o"
                       size={14}
-                      color={APPCOLORS.Primary}
+                      color={ThemeColors.Primary}
                     />
                     <AppText
                       title={formatTime12h(item.ActivityTime)}
                       titleSize={1.4}
                       titleWeight
-                      titleColor={APPCOLORS.Primary}
+                      titleColor={ThemeColors.Primary}
                       style={{marginLeft: 5}}
                     />
                   </View>
@@ -277,7 +277,7 @@ const DVRInquiry = () => {
                     <FontAwesome
                       name="map-marker"
                       size={16}
-                      color={APPCOLORS.Secondary}
+                      color={ThemeColors.TextMuted}
                       style={{width: 20}}
                     />
                     <View style={{flex: 1}}>
@@ -285,12 +285,12 @@ const DVRInquiry = () => {
                         title={item.site_name || 'Site Recorded'}
                         titleSize={1.4}
                         titleWeight
-                        titleColor={APPCOLORS.BLACK}
+                        titleColor={ThemeColors.TextMain}
                       />
                       <AppText
                         title={item.site_address || 'Address not provided'}
                         titleSize={1.2}
-                        titleColor={APPCOLORS.GRAY}
+                        titleColor={ThemeColors.TextMuted}
                         style={{marginTop: 2}}
                       />
                     </View>
@@ -298,7 +298,7 @@ const DVRInquiry = () => {
                       <FontAwesome
                         name="external-link"
                         size={12}
-                        color={APPCOLORS.Primary}
+                        color={ThemeColors.Primary}
                       />
                     )}
                   </View>
@@ -308,13 +308,13 @@ const DVRInquiry = () => {
                       <FontAwesome
                         name="info-circle"
                         size={16}
-                        color={APPCOLORS.GRAY}
+                        color={ThemeColors.TextMuted}
                         style={{width: 20}}
                       />
                       <AppText
                         title={item.nature_of_visit}
                         titleSize={1.3}
-                        titleColor={APPCOLORS.BLACK}
+                        titleColor={ThemeColors.TextMain}
                         style={{flex: 1}}
                       />
                     </View>
@@ -334,13 +334,13 @@ const DVRInquiry = () => {
                       <FontAwesome
                         name="globe"
                         size={16}
-                        color={APPCOLORS.GRAY}
+                        color={ThemeColors.TextMuted}
                         style={{width: 20}}
                       />
                       <AppText
                         title={item.current_location}
                         titleSize={1.2}
-                        titleColor={APPCOLORS.TextMuted || APPCOLORS.GRAY}
+                        titleColor={ThemeColors.TextMuted}
                         style={{flex: 1}}
                       />
                     </View>
@@ -358,9 +358,9 @@ const DVRInquiry = () => {
 export default DVRInquiry;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#F8F9FA'},
+  container: {flex: 1, backgroundColor: ThemeColors.Surface},
   calendarContainer: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     margin: 15,
     borderRadius: 20,
     padding: 15,
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
     marginRight: 6,
   },
   navBtn: {
@@ -407,17 +407,17 @@ const styles = StyleSheet.create({
     borderColor: '#F0F0F0',
   },
   selectedButton: {
-    backgroundColor: APPCOLORS.Primary,
-    borderColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
+    borderColor: ThemeColors.Primary,
     elevation: 3,
   },
   todayOutline: {
-    borderColor: APPCOLORS.Primary,
+    borderColor: ThemeColors.Primary,
     borderWidth: 1.5,
   },
   listSection: {paddingHorizontal: 15, marginTop: 10},
   card: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 15,
     padding: 15,
     marginBottom: 12,

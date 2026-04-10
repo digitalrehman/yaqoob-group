@@ -16,6 +16,7 @@ import SimpleHeader from '../../../../components/SimpleHeader';
 import * as Animatable from 'react-native-animatable';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatDateString, formatDate} from '../../../../utils/DateUtils';
+import {ThemeColors} from '../../../../config/Theme';
 
 const PdcDetailScreen = () => {
   const [fromDate, setFromDate] = useState(null);
@@ -239,12 +240,12 @@ const PdcDetailScreen = () => {
 export default PdcDetailScreen;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#F3F4F6'},
+  container: {flex: 1, backgroundColor: ThemeColors.Surface},
   filterContainer: {
     padding: 15,
     margin: 12,
     borderRadius: 20,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',
     shadowOffset: {width: 4, height: 4},
     shadowOpacity: 0.2,
@@ -256,10 +257,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 8,
     marginBottom: 12,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: ThemeColors.Background,
   },
-  placeholderStyle: {fontSize: 14, color: '#777'},
-  selectedTextStyle: {fontSize: 14, color: '#000', fontWeight: '600'},
+  placeholderStyle: {fontSize: 14, color: ThemeColors.TextMuted},
+  selectedTextStyle: {fontSize: 14, color: ThemeColors.TextMain, fontWeight: '600'},
   dateRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -270,7 +271,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: '#f4f4f4',
+    backgroundColor: ThemeColors.Background,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -280,12 +281,14 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   dateText: {
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontWeight: '600',
     textAlign: 'center',
   },
   card: {
-    backgroundColor: '#f4f4f4',
+    backgroundColor: ThemeColors.Surface,
+    borderWidth: 1,
+    borderColor: ThemeColors.Border,
     marginHorizontal: 12,
     marginVertical: 6,
     borderRadius: 12,
@@ -302,7 +305,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   cardKey: {
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontWeight: '600',
     flex: 1,
     textTransform: 'capitalize',
@@ -316,7 +319,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 3,

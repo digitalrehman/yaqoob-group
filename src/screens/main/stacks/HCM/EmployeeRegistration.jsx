@@ -24,14 +24,16 @@ import {BASEURL} from '../../../../utils/BaseUrl';
 
 const {width} = Dimensions.get('window');
 
+import {ThemeColors} from '../../../../config/Theme';
+
 const COLORS = {
-  PRIMARY: '#000000', // Black as requested
-  SECONDARY: '#3b82f6',
-  WHITE: '#FFFFFF',
-  BACKGROUND: '#f3f4f6', // As requested
-  TEXT_DARK: '#1f2937',
-  TEXT_LIGHT: '#6b7280',
-  BORDER: '#e5e7eb',
+  PRIMARY: ThemeColors.Primary,
+  SECONDARY: ThemeColors.TextMuted,
+  WHITE: ThemeColors.Surface,
+  BACKGROUND: ThemeColors.Surface,
+  TEXT_DARK: ThemeColors.TextMain,
+  TEXT_LIGHT: ThemeColors.TextMuted,
+  BORDER: ThemeColors.Border,
   ERROR: '#ef4444',
   SUCCESS: '#10b981',
 };

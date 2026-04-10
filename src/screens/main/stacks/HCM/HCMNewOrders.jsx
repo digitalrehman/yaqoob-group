@@ -18,7 +18,8 @@ import {useSelector} from 'react-redux';
 import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BASEURL} from '../../../../utils/BaseUrl';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+
+import {ThemeColors} from '../../../../config/Theme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const HCMNewOrders = ({navigation}) => {
@@ -132,7 +133,7 @@ const HCMNewOrders = ({navigation}) => {
           onPress={() => navigation.navigate('HCMOrderForm', {customer: item, mode: 'Order'})}
           style={styles.gradientButton}>
           <PlatformGradient
-            colors={['#E87F24', '#F39C12']}
+            colors={[ThemeColors.Primary, '#F39C12']}
             style={styles.gradientInside}>
             <Text style={styles.buttonText}>Take Order</Text>
           </PlatformGradient>
@@ -142,7 +143,7 @@ const HCMNewOrders = ({navigation}) => {
           onPress={() => navigation.navigate('HCMOrderForm', {customer: item, mode: 'Return'})}
           style={styles.gradientButton}>
           <PlatformGradient
-            colors={['#E87F24', '#F39C12']}
+            colors={[ThemeColors.Primary, '#F39C12']}
             style={styles.gradientInside}>
             <Text style={styles.buttonText}>Return</Text>
           </PlatformGradient>
@@ -156,7 +157,7 @@ const HCMNewOrders = ({navigation}) => {
           onPress={() => navigation.navigate('HCMPaymentScreen', { customer: item })}
         >
           <PlatformGradient
-            colors={['#E87F24', '#F39C12']}
+            colors={[ThemeColors.Primary, '#F39C12']}
             style={styles.paymentGradient}>
             <Text style={styles.buttonText}>Payment</Text>
           </PlatformGradient>
@@ -189,7 +190,7 @@ const HCMNewOrders = ({navigation}) => {
           paddingHorizontal: 16,
           paddingBottom: 15,
           paddingTop: Platform.OS === 'ios' ? insets.top + 25 : insets.top + 30,
-          backgroundColor: '#E87F24',
+          backgroundColor: ThemeColors.Primary,
           borderBottomLeftRadius: 15,
           borderBottomRightRadius: 15,
           elevation: 5,
@@ -197,7 +198,7 @@ const HCMNewOrders = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.headerIconButton}>
-          <Ionicons name="arrow-back" size={20} color="#E87F24" />
+          <Ionicons name="arrow-back" size={20} color={ThemeColors.Primary} />
         </TouchableOpacity>
 
         <PlatformGradient
@@ -227,7 +228,7 @@ const HCMNewOrders = ({navigation}) => {
             })
           }
           style={styles.headerIconButton}>
-          <Ionicons name="person-add" size={20} color="#E87F24" />
+          <Ionicons name="person-add" size={20} color={ThemeColors.Primary} />
         </TouchableOpacity>
       </View>
 
@@ -257,7 +258,7 @@ const HCMNewOrders = ({navigation}) => {
             )}
             ListFooterComponent={() =>
               loadermore ? (
-                <ActivityIndicator size="small" color="#E87F24" />
+                <ActivityIndicator size="small" color={ThemeColors.Primary} />
               ) : null
             }
           />
@@ -272,7 +273,7 @@ export default HCMNewOrders;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   headerIconButton: {
     height: 40,
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     elevation: 3,
   },
   searchBarGradient: {
@@ -295,11 +296,11 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#fff',
+    color: ThemeColors.Surface,
     padding: 0,
   },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 15,
     marginHorizontal: 15,
     marginVertical: 8,
@@ -324,17 +325,17 @@ const styles = StyleSheet.create({
   customerName: {
     fontSize: 15,
     fontWeight: '700',
-    color: '#1a1c22',
+    color: ThemeColors.TextMain,
     marginLeft: 6,
   },
   customerPhone: {
     fontSize: 14,
-    color: '#1a1c22',
+    color: ThemeColors.TextMain,
     marginLeft: 6,
   },
   customerAddress: {
     fontSize: 13,
-    color: '#666',
+    color: ThemeColors.TextMuted,
     marginLeft: 6,
   },
   buttonRow: {
@@ -353,7 +354,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: ThemeColors.Surface,
     fontWeight: '600',
     fontSize: 13,
   },
@@ -384,13 +385,13 @@ const styles = StyleSheet.create({
   },
   statLabel: {
     fontSize: 10,
-    color: '#666',
+    color: ThemeColors.TextMuted,
     fontWeight: '600',
     textTransform: 'uppercase',
   },
   statValue: {
     fontSize: 11,
-    color: '#1a1c22',
+    color: ThemeColors.TextMain,
     fontWeight: '700',
   },
   emptyContainer: {
@@ -399,6 +400,6 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
-    color: '#999',
+    color: ThemeColors.TextMuted,
   },
 });

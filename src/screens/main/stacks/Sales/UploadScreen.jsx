@@ -24,12 +24,12 @@ import {BASEURL} from '../../../../utils/BaseUrl';
 
 const COLORS = {
   WHITE: '#FFFFFF',
-  PRIMARY: '#1a1c22',
+  PRIMARY: '#E87F24',
   Background: '#F3F4F6',
   Border: '#E2E8F0',
   TextDark: '#1E293B',
   TextMuted: '#64748B',
-  Success: '#10B981',
+  Success: '#E87F24',
   SuccessLight: '#ECFDF5',
 };
 

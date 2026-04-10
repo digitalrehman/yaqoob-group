@@ -16,6 +16,7 @@ import * as Animatable from 'react-native-animatable';
 import {formatDate, formatDateString} from '../../../../utils/DateUtils';
 import {formatNumber} from '../../../../utils/NumberUtils';
 import {BASEURL} from '../../../../utils/BaseUrl';
+import {ThemeColors} from '../../../../config/Theme';
 
 const GrnAgainst = ({navigation, route}) => {
   const [fromDate, setFromDate] = useState(null);
@@ -199,8 +200,8 @@ const GrnAgainst = ({navigation, route}) => {
           style={styles.dropdown}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
-          itemTextStyle={{color: '#000'}}
-          inputSearchStyle={{color: '#000'}}
+          itemTextStyle={{color: ThemeColors.TextMain}}
+          inputSearchStyle={{color: ThemeColors.TextMain}}
           data={customers}
           search
           maxHeight={300}
@@ -217,8 +218,8 @@ const GrnAgainst = ({navigation, route}) => {
           style={styles.dropdown}
           placeholderStyle={styles.placeholderStyle}
           selectedTextStyle={styles.selectedTextStyle}
-          itemTextStyle={{color: '#000'}}
-          inputSearchStyle={{color: '#000'}}
+          itemTextStyle={{color: ThemeColors.TextMain}}
+          inputSearchStyle={{color: ThemeColors.TextMain}}
           data={locations}
           search
           maxHeight={300}
@@ -324,12 +325,12 @@ const GrnAgainst = ({navigation, route}) => {
 export default GrnAgainst;
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#F3F4F6'},
+  container: {flex: 1, backgroundColor: ThemeColors.Surface},
   filterContainer: {
     padding: 15,
     margin: 12,
     borderRadius: 20,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',
     shadowOffset: {width: 6, height: 6},
     shadowOpacity: 0.3,
@@ -346,7 +347,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     padding: 10,
     borderRadius: 10,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: ThemeColors.Background,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -356,7 +357,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   dateText: {
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontWeight: '600',
     textAlign: 'center',
   },
@@ -365,7 +366,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 8,
     marginBottom: 12,
-    backgroundColor: '#e0e0e0',
+    backgroundColor: ThemeColors.Background,
     shadowColor: '#000',
     shadowOffset: {width: 4, height: 4},
     shadowOpacity: 0.2,
@@ -373,10 +374,10 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   placeholderStyle: {fontSize: 14, color: '#5a5c6a'},
-  selectedTextStyle: {fontSize: 14, color: '#000', fontWeight: '600'},
+  selectedTextStyle: {fontSize: 14, color: ThemeColors.TextMain, fontWeight: '600'},
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Primary,
     padding: 10,
     marginHorizontal: 12,
     borderRadius: 10,
@@ -393,14 +394,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     marginVertical: 4,
     borderRadius: 12,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',
     shadowOffset: {width: 3, height: 3},
     shadowOpacity: 0.15,
     shadowRadius: 4,
     elevation: 2,
   },
-  cell: {fontSize: 12, color: '#000', textAlign: 'center'},
+  cell: {fontSize: 12, color: ThemeColors.TextMain, textAlign: 'center'},
   cellWrapper: {
     flex: 1,
     flexDirection: 'row',
@@ -420,7 +421,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Primary,
     alignItems: 'center',
     justifyContent: 'center',
     marginHorizontal: 3,

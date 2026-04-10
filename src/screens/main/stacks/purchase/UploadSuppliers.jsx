@@ -16,6 +16,7 @@ import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import SimpleHeader from '../../../../components/SimpleHeader';
+import {ThemeColors} from '../../../../config/Theme';
 
 const UploadSuppliers = ({navigation, route}) => {
   const [CustomerName, setCustomerName] = useState('');
@@ -207,7 +208,7 @@ const UploadSuppliers = ({navigation, route}) => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#F3F4F6',
+          backgroundColor: ThemeColors.Surface,
         }}>
         <ActivityIndicator size="large" color="#1a1c22" />
       </View>
@@ -363,11 +364,11 @@ export default UploadSuppliers;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   sectionHeading: {
     fontSize: 18,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontWeight: '700',
     marginBottom: 6,
   },
@@ -382,7 +383,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 56,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontSize: 16,
   },
   dropdown: {
@@ -396,7 +397,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     height: 56,
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Primary,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',

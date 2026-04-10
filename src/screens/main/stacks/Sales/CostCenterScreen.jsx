@@ -112,7 +112,7 @@ const CostCenterScreen = ({navigation}) => {
             style={styles.formContainer}>
             {/* Header Icon */}
             <View style={styles.headerIconContainer}>
-              <Icon name="map-marker-plus" size={50} color="#1a1c22" />
+              <Icon name="map-marker-plus" size={50} color="#E87F24" />
               <Text style={styles.headerTitle}>New Cost Center</Text>
               <Text style={styles.headerSubtitle}>
                 Enter the details to add a new cost center
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#1a1c22',
+    color: '#E87F24',
     marginTop: 15,
   },
   headerSubtitle: {
@@ -266,11 +266,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     borderRadius: 12,
     paddingVertical: 16,
     marginTop: 10,
-    shadowColor: '#1a1c22',
+    shadowColor: '#E87F24',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 6,

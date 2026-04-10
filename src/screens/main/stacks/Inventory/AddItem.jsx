@@ -17,16 +17,17 @@ import axios from 'axios';
 import Toast from 'react-native-toast-message'; // ✅ Toast library
 import {BASEURL} from '../../../../utils/BaseUrl';
 import SimpleHeader from '../../../../components/SimpleHeader';
+import {ThemeColors} from '../../../../config/Theme';
 
 const COLORS = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
-  BG: '#f3f4f6',
-  TEXT_MAIN: '#1f2937',
-  TEXT_MUTED: '#6b7280',
-  BORDER: '#e5e7eb',
+  WHITE: ThemeColors.Surface,
+  BLACK: ThemeColors.TextMain,
+  Primary: ThemeColors.Primary,
+  Secondary: ThemeColors.TextMuted,
+  BG: ThemeColors.Surface,
+  TEXT_MAIN: ThemeColors.TextMain,
+  TEXT_MUTED: ThemeColors.TextMuted,
+  BORDER: ThemeColors.Border,
 };
 
 export default function AddItem({navigation}) {

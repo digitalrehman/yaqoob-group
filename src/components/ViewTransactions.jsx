@@ -185,7 +185,7 @@ const ViewTransactions = ({navigation, route}) => {
       <>
         <SimpleHeader title="Transaction Details" />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#1a1c22" />
+          <ActivityIndicator size="large" color="#E87F24" />
         </View>
       </>
     );
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
   },
   totalAmount: {
     fontSize: 18,
-    color: '#1a1c22',
+    color: '#E87F24',
     fontWeight: 'bold',
     marginTop: 5,
   },
@@ -319,7 +319,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     padding: 12,
     borderRadius: 8,
     marginHorizontal: 12,
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   },
   detailHeader: {
     flexDirection: 'row',
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     padding: 12,
     marginHorizontal: 12,
     marginTop: 10,
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
   commentsTitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#1a1c22',
+    color: '#E87F24',
     marginBottom: 8,
   },
   commentsText: {
@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#1a1c22',
+    color: '#E87F24',
   },
   termsContainer: {
     padding: 15,
@@ -431,7 +431,7 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   modalCloseButton: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     padding: 15,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,

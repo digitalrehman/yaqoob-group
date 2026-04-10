@@ -11,10 +11,9 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import AppText from '../../../../components/AppText';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
-import PlatformGradient from '../../../../components/PlatformGradient';
 import {formatDateString} from '../../../../utils/DateUtils';
 import {formatNumber} from '../../../../utils/NumberUtils';
+import {ThemeColors} from '../../../../config/Theme';
 
 const decode = text => {
   if (!text) return '';
@@ -138,16 +137,12 @@ const ViewDetailsScreen = ({route}) => {
                 transform: [{translateY: slideAnim}],
               },
             ]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.card}>
+            <View style={styles.card}>
               {/* Use Type as Heading */}
               <AppText
                 title={header.type || 'Header Information'}
                 titleSize={3}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
                 style={styles.cardTitle}
               />
@@ -157,24 +152,24 @@ const ViewDetailsScreen = ({route}) => {
                   <AppText
                     title="Date:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={formatDateString(header.trans_date) || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
                 <View style={styles.detailRow}>
                   <AppText
                     title="Reference:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={header.reference || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
 
@@ -183,12 +178,12 @@ const ViewDetailsScreen = ({route}) => {
                     <AppText
                       title="Cost center:"
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                     <AppText
                       title={header.location_name || 'N/A'}
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                   </View>
                 )}
@@ -197,7 +192,7 @@ const ViewDetailsScreen = ({route}) => {
                     <AppText
                       title={dateLabel}
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                     <AppText
                       title={
@@ -206,7 +201,7 @@ const ViewDetailsScreen = ({route}) => {
                           : formatDateString(header.due_date) || 'N/A'
                       }
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                   </View>
                 )}
@@ -214,16 +209,16 @@ const ViewDetailsScreen = ({route}) => {
                 <View style={{marginTop: 10}}>
                   <AppText
                     title={
-                      isPurchaseOrder || isGRN ? 'Supplier Name:' : 'Customer:' 
+                      isPurchaseOrder || isGRN ? 'Supplier Name:' : 'Customer:'
                     }
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                   <AppText
                     title={decode(header.name) || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     style={{marginTop: 2}}
                   />
                 </View>
@@ -233,13 +228,13 @@ const ViewDetailsScreen = ({route}) => {
                     <AppText
                       title="Customer PO:"
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                       titleWeight
                     />
                     <AppText
                       title={decode(header.customer_ref) || 'N/A'}
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                       style={{marginTop: 2}}
                     />
                   </View>
@@ -248,12 +243,12 @@ const ViewDetailsScreen = ({route}) => {
                   <AppText
                     title="Location:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={header.location_name || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View> */}
 
@@ -262,12 +257,12 @@ const ViewDetailsScreen = ({route}) => {
                     <AppText
                       title="Sales person:"
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                     <AppText
                       title={header.salesman || 'N/A'}
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                   </View>
                 )}
@@ -277,12 +272,12 @@ const ViewDetailsScreen = ({route}) => {
                     <AppText
                       title="Payment Terms:"
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                     <AppText
                       title={header.payment_terms || 'N/A'}
                       titleSize={2}
-                      titleColor={APPCOLORS.WHITE}
+                      titleColor={ThemeColors.TextMain}
                     />
                   </View>
                 )}
@@ -291,84 +286,71 @@ const ViewDetailsScreen = ({route}) => {
                   <AppText
                     title="Total Amount:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                   <AppText
                     title={formatNumber(header.total) || '0'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                 </View>
               </View>
-            </PlatformGradient>
+            </View>
           </Animated.View>
         )}
 
         {/* Items Details Card */}
         {details.length > 0 && (
-          <Animated.View
-            style={[
-              styles.cardWrapper,
-              {
-                opacity: fadeAnim,
-                transform: [{translateY: slideAnim}],
-              },
-            ]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.card}>
-              <AppText
-                title={`Line items (${details.length})`}
-                titleSize={3}
-                titleColor={APPCOLORS.WHITE}
-                titleWeight
-                style={styles.cardTitle}
-              />
+          <View style={{marginTop: 10}}>
+            <AppText
+              title={`Line items (${details.length})`}
+              titleSize={3}
+              titleColor={ThemeColors.TextMain}
+              titleWeight
+              style={{marginBottom: 15, marginLeft: 5}}
+            />
 
-              {details.map((item, index) => (
-                <Animated.View
-                  key={index}
-                  style={[
-                    styles.itemCard,
-                    {
-                      opacity: fadeAnim,
-                      transform: [
-                        {
-                          translateY: Animated.multiply(slideAnim, 0.5),
-                        },
-                      ],
-                    },
-                  ]}>
-                  <PlatformGradient
-                    colors={['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)']}
-                    style={styles.itemGradient}>
-                    <View style={styles.itemDetails}>
+            {details.map((item, index) => (
+              <Animated.View
+                key={index}
+                style={[
+                  styles.cardWrapper,
+                  {
+                    opacity: fadeAnim,
+                    transform: [
+                      {
+                        translateY: Animated.multiply(slideAnim, 0.5),
+                      },
+                    ],
+                    marginBottom: 15,
+                  },
+                ]}>
+                <View style={styles.card}>
+                  <View style={styles.itemDetails}>
                       <View style={styles.detailRow}>
                         <AppText
                           title="Serial No:"
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                         <AppText
                           title={`${index + 1}`}
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                       </View>
                       <View style={styles.detailRow}>
                         <AppText
                           title="Stock ID:"
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                         <AppText
                           title={item.stock_id || 'N/A'}
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                       </View>
 
@@ -378,33 +360,33 @@ const ViewDetailsScreen = ({route}) => {
                           <AppText
                             title="Qty"
                             titleSize={1.6}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                             titleWeight
                           />
                           <AppText
                             title={formatNumber(item.quantity)}
                             titleSize={1.8}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                           />
                         </View>
                         <View style={[styles.combinedItem, {flex: 1.3}]}>
                           <AppText
                             title="Unit Price"
                             titleSize={1.6}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                             titleWeight
                           />
                           <AppText
                             title={formatNumber(item.unit_price)}
                             titleSize={1.8}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                           />
                         </View>
                         <View style={[styles.combinedItem, {flex: 1}]}>
                           <AppText
                             title="Total"
                             titleSize={1.6}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                             titleWeight
                           />
                           <AppText
@@ -413,7 +395,7 @@ const ViewDetailsScreen = ({route}) => {
                                 parseFloat(item.unit_price || 0),
                             )}
                             titleSize={1.8}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                           />
                         </View>
                       </View>
@@ -424,23 +406,22 @@ const ViewDetailsScreen = ({route}) => {
                           <AppText
                             title="Description:"
                             titleSize={2}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                             titleWeight
                           />
                           <AppText
                             title={decode(item.long_description)}
                             titleSize={2}
-                            titleColor={APPCOLORS.WHITE}
+                            titleColor={ThemeColors.TextMain}
                             style={styles.longDescText}
                           />
                         </View>
                       )}
                     </View>
-                  </PlatformGradient>
-                </Animated.View>
-              ))}
-            </PlatformGradient>
-          </Animated.View>
+                </View>
+              </Animated.View>
+            ))}
+          </View>
         )}
 
         {/* Comments Section */}
@@ -453,24 +434,20 @@ const ViewDetailsScreen = ({route}) => {
                 transform: [{translateY: slideAnim}],
               },
             ]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.card}>
+            <View style={styles.card}>
               <AppText
                 title="Comments:"
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
               <AppText
                 title={decode(header.comments)}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 style={styles.commentsText}
               />
-            </PlatformGradient>
+            </View>
           </Animated.View>
         )}
 
@@ -480,23 +457,19 @@ const ViewDetailsScreen = ({route}) => {
             style={styles.termsButton}
             onPress={() => setShowTermsModal(true)}
             activeOpacity={0.8}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.termsButtonGradient}>
+            <View style={styles.termsButtonGradient}>
               <Icon
                 name="file-document-outline"
                 size={24}
-                color={APPCOLORS.WHITE}
+                color={ThemeColors.Primary}
               />
               <AppText
                 title="View Terms & Conditions"
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
-            </PlatformGradient>
+            </View>
           </TouchableOpacity>
         )}
       </ScrollView>
@@ -513,11 +486,11 @@ const ViewDetailsScreen = ({route}) => {
               <AppText
                 title="Terms & Conditions"
                 titleSize={2.5}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
               <TouchableOpacity onPress={() => setShowTermsModal(false)}>
-                <Icon name="close" size={28} color={APPCOLORS.WHITE} />
+                <Icon name="close" size={28} color="#FFF" />
               </TouchableOpacity>
             </View>
             <ScrollView
@@ -526,7 +499,7 @@ const ViewDetailsScreen = ({route}) => {
               <AppText
                 title={header.term_cond}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 style={styles.modalTermsText}
               />
             </ScrollView>
@@ -537,7 +510,7 @@ const ViewDetailsScreen = ({route}) => {
               <AppText
                 title="Close"
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
             </TouchableOpacity>
@@ -551,7 +524,7 @@ const ViewDetailsScreen = ({route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   scrollView: {
     flex: 1,
@@ -590,7 +563,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     overflow: 'hidden',
     marginBottom: 15,
-    shadowColor: APPCOLORS.BLACK,
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 6,
@@ -598,6 +571,7 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 20,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 20,
   },
   cardTitle: {
@@ -616,11 +590,11 @@ const styles = StyleSheet.create({
     marginTop: 5,
     paddingTop: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.3)',
+    borderTopColor: ThemeColors.Border,
   },
   divider: {
     height: 1,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: ThemeColors.Border,
     marginVertical: 12,
   },
   section: {
@@ -641,6 +615,7 @@ const styles = StyleSheet.create({
   },
   itemGradient: {
     padding: 15,
+    backgroundColor: ThemeColors.Background,
     borderRadius: 12,
   },
   itemDetails: {
@@ -660,7 +635,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
     paddingTop: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.2)',
+    borderTopColor: ThemeColors.Border,
   },
   longDescText: {
     marginTop: 4,
@@ -673,13 +648,16 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     overflow: 'hidden',
     elevation: 4,
-    shadowColor: APPCOLORS.BLACK,
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 5,
   },
-  termsButtonGradient: {
+  termsButtonText: {
     padding: 18,
+    backgroundColor: ThemeColors.Surface,
+    borderWidth: 1,
+    borderColor: ThemeColors.Primary,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -695,7 +673,7 @@ const styles = StyleSheet.create({
   modalContent: {
     width: '100%',
     maxHeight: '100%',
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 25,
     padding: 25,
     borderWidth: 1,
@@ -713,7 +691,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.1)',
+    borderBottomColor: ThemeColors.Border,
   },
   modalScroll: {
     marginBottom: 20,
@@ -723,12 +701,10 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   closeButton: {
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: ThemeColors.Primary,
     padding: 15,
     borderRadius: 15,
     alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
   },
 });
 

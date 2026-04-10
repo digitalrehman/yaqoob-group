@@ -15,6 +15,7 @@ import SimpleHeader from '../../../../components/SimpleHeader';
 import {useSelector} from 'react-redux';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatQuantity} from '../../../../utils/NumberUtils';
+import {ThemeColors} from '../../../../config/Theme';
 
 const GrnDeliveryNote = ({route}) => {
   const navigation = useNavigation();
@@ -253,7 +254,7 @@ export default GrnDeliveryNote;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: ThemeColors.Surface,
     padding: 15,
   },
   // Location and Name Row Styles
@@ -264,12 +265,12 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flex: 1,
-    backgroundColor: '#F0F0F0',
+    backgroundColor: ThemeColors.Background,
     borderRadius: 10,
     padding: 12,
     marginHorizontal: 5,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: ThemeColors.Border,
   },
   infoLabel: {
     fontSize: 12,
@@ -280,17 +281,17 @@ const styles = StyleSheet.create({
   infoValue: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#000',
+    color: ThemeColors.TextMain,
   },
   heading: {
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontSize: 18,
     fontWeight: 'bold',
     marginVertical: 10,
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#000000',
+    backgroundColor: ThemeColors.Primary,
     borderRadius: 8,
     padding: 10,
     marginBottom: 8,
@@ -303,30 +304,30 @@ const styles = StyleSheet.create({
   },
   tableRow: {
     flexDirection: 'row',
-    backgroundColor: '#F8F8F8',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 8,
     padding: 5,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: ThemeColors.Border,
   },
   cell: {
     textAlign: 'center',
     padding: 8,
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontSize: 13,
   },
   inputCell: {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Background,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: ThemeColors.Border,
     paddingHorizontal: 6,
     paddingVertical: 6,
     fontSize: 13,
     textAlign: 'center',
   },
   labelCell: {
-    color: '#000',
+    color: ThemeColors.TextMain,
     fontWeight: 'bold',
     textAlign: 'center',
     paddingVertical: 10,
@@ -338,7 +339,7 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   button: {
-    backgroundColor: '#000000',
+    backgroundColor: ThemeColors.Primary,
     padding: 15,
     borderRadius: 12,
     marginTop: 20,

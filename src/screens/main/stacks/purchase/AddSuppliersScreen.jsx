@@ -17,6 +17,7 @@ import {BASEURL} from '../../../../utils/BaseUrl';
 import {APPCOLORS} from '../../../../utils/APPCOLORS';
 import {responsiveWidth} from '../../../../utils/Responsive';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ThemeColors} from '../../../../config/Theme';
 
 const AddSuppliersScreen = ({navigation}) => {
   const insets = useSafeAreaInsets();
@@ -55,7 +56,7 @@ const AddSuppliersScreen = ({navigation}) => {
   );
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F3F4F6'}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Surface}}>
       {/* Header */}
       <View
         style={{
@@ -64,7 +65,7 @@ const AddSuppliersScreen = ({navigation}) => {
           paddingHorizontal: 16,
           paddingBottom: 15,
           paddingTop: Platform.OS === 'ios' ? insets.top + 25 : insets.top + 30,
-          backgroundColor: APPCOLORS.BLACK,
+          backgroundColor: ThemeColors.Primary,
         }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -74,20 +75,17 @@ const AddSuppliersScreen = ({navigation}) => {
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#E0E5EC',
+            backgroundColor: 'rgba(255,255,255,0.25)',
             shadowColor: '#000',
             shadowOffset: {width: 2, height: 2},
             shadowOpacity: 0.1,
             shadowRadius: 3,
             elevation: 3,
           }}>
-          <Ionicons name="arrow-back" size={20} color="#333" />
+          <Ionicons name="arrow-back" size={20} color="#FFF" />
         </TouchableOpacity>
 
-        <PlatformGradient
-          colors={['#000000', '#434343']}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}
+        <View
           style={{
             flex: 1,
             flexDirection: 'row',
@@ -96,26 +94,27 @@ const AddSuppliersScreen = ({navigation}) => {
             borderRadius: 10,
             paddingHorizontal: 12,
             marginHorizontal: 10,
+            backgroundColor: ThemeColors.Surface,
             shadowColor: '#000',
-            shadowOffset: {width: 2, height: 2},
-            shadowOpacity: 0.1,
+            shadowOffset: {width: 0, height: 2},
+            shadowOpacity: 0.05,
             shadowRadius: 3,
-            elevation: 3,
+            elevation: 2,
           }}>
           <Ionicons
             name="search"
             size={18}
-            color="#fff"
+            color={ThemeColors.TextMuted}
             style={{marginRight: 8}}
           />
           <TextInput
             placeholder="Search Supplier"
-            placeholderTextColor="#aaa"
-            style={{flex: 1, fontSize: 14, color: '#fff', padding: 0}}
+            placeholderTextColor={ThemeColors.TextMuted}
+            style={{flex: 1, fontSize: 14, color: ThemeColors.TextMain, padding: 0}}
             onChangeText={txt => setSearch(txt)}
             value={Search}
           />
-        </PlatformGradient>
+        </View>
 
         <TouchableOpacity
           onPress={() =>
@@ -130,10 +129,10 @@ const AddSuppliersScreen = ({navigation}) => {
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: APPCOLORS.Secondary,
+            backgroundColor: ThemeColors.Surface,
             elevation: 3,
           }}>
-          <Ionicons name="person-add" size={20} color="#fff" />
+          <Ionicons name="person-add" size={20} color={ThemeColors.Primary} />
         </TouchableOpacity>
       </View>
 
@@ -162,7 +161,9 @@ const AddSuppliersScreen = ({navigation}) => {
                     padding: 15,
                     width: responsiveWidth(90),
                     alignSelf: 'center',
-                    backgroundColor: '#dee2e6',
+                    backgroundColor: ThemeColors.Surface,
+                    borderWidth: 1,
+                    borderColor: ThemeColors.Border,
                     shadowColor: '#000',
                     shadowOffset: {width: 0, height: 2},
                     shadowOpacity: 0.15,
@@ -195,7 +196,7 @@ const AddSuppliersScreen = ({navigation}) => {
               )}
             />
           ) : (
-            <Text style={{color: '#333', fontSize: 18}}>No Supplier Found</Text>
+            <Text style={{color: ThemeColors.TextMain, fontSize: 18}}>No Supplier Found</Text>
           )}
         </View>
       )}
@@ -212,11 +213,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   label: {
-    color: '#000000',
+    color: ThemeColors.TextMain,
     fontWeight: 'bold',
   },
   value: {
-    color: '#000000',
+    color: ThemeColors.TextMain,
     maxWidth: '60%',
   },
 });

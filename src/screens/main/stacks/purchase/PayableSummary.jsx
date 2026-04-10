@@ -14,16 +14,18 @@ import ViewAll from '../../../../components/ViewAll';
 import {GetPayable} from '../../../../global/ChartApisCall';
 import {formatNumber} from '../../../../utils/NumberUtils';
 
+import {ThemeColors} from '../../../../config/Theme';
+
 const COLORS = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
-  Background: '#F3F4F6',
-  Border: '#E2E8F0',
-  TextDark: '#1E293B',
-  TextMuted: '#64748B',
-  CardBg: '#FFFFFF',
+  WHITE: ThemeColors.Surface,
+  BLACK: ThemeColors.TextMain,
+  Primary: ThemeColors.Primary,
+  Secondary: ThemeColors.TextMuted,
+  Background: ThemeColors.Background,
+  Border: ThemeColors.Border,
+  TextDark: ThemeColors.TextMain,
+  TextMuted: ThemeColors.TextMuted,
+  CardBg: ThemeColors.Surface,
 };
 
 const PayableScreen = ({navigation}) => {
@@ -334,11 +336,11 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   card: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Surface,
     padding: 16,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: '#1a1c22',
+    borderColor: ThemeColors.Border,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.15,

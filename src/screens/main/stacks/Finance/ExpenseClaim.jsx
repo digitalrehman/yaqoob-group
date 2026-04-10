@@ -24,18 +24,19 @@ import { useSelector } from 'react-redux';
 import { formatNumber } from '../../../../utils/NumberUtils';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { APPCOLORS } from '../../../../utils/APPCOLORS';
+import { ThemeColors } from '../../../../config/Theme';
 
 const COLORS = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
-  CardBg: '#F8FAFC',
-  Border: '#E2E8F0',
-  LabelColor: '#64748B',
-  TextDark: '#1E293B',
-  AccentBlue: '#3B82F6',
-  CheckboxActive: '#10B981',
+  WHITE: ThemeColors.Surface,
+  BLACK: ThemeColors.TextMain,
+  Primary: ThemeColors.Primary,
+  Secondary: ThemeColors.TextMuted,
+  CardBg: ThemeColors.Surface,
+  Border: ThemeColors.Border,
+  LabelColor: ThemeColors.TextMuted,
+  TextDark: ThemeColors.TextMain,
+  AccentBlue: ThemeColors.Primary,
+  CheckboxActive: ThemeColors.Primary,
 };
 
 // Purpose options for checkboxes with expense_type numbers
@@ -344,9 +345,7 @@ export default function ExpenseClaim({ navigation, route }) {
   return (
     <View style={styles.container}>
       {/* Header */}
-      <PlatformGradient
-        colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-        style={[styles.header, { paddingTop }]}>
+      <PlatformGradient colors={[ThemeColors.Primary, ThemeColors.Primary]} style={[styles.header, { paddingTop }]}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Ionicons name="chevron-back" color={COLORS.WHITE} size={28} />
         </TouchableOpacity>
@@ -453,7 +452,7 @@ export default function ExpenseClaim({ navigation, route }) {
                 containerStyle={styles.dropdownContainer}
                 renderLeftIcon={() =>
                   accountsLoading && (
-                    <ActivityIndicator size="small" color={COLORS.AccentBlue} style={{ marginRight: 8 }} />
+                    <ActivityIndicator size="small" color={ThemeColors.Primary} style={{ marginRight: 8 }} />
                   )
                 }
               />
@@ -563,14 +562,14 @@ export default function ExpenseClaim({ navigation, route }) {
 
           {imageLoading ? (
             <View style={styles.attachButtonsRow}>
-              <ActivityIndicator size="small" color={COLORS.AccentBlue} />
+              <ActivityIndicator size="small" color={ThemeColors.Primary} />
             </View>
           ) : (
             <View style={styles.attachButtonsRow}>
               <TouchableOpacity
                 onPress={handleCameraCapture}
                 style={styles.attachOptionButton}>
-                <View style={[styles.attachIconWrap, { backgroundColor: '#3B82F6' }]}>
+                <View style={[styles.attachIconWrap, { backgroundColor: ThemeColors.Primary }]}>
                   <Ionicons name="camera" size={24} color={COLORS.WHITE} />
                 </View>
                 <Text style={styles.attachOptionText}>Camera</Text>
@@ -579,7 +578,7 @@ export default function ExpenseClaim({ navigation, route }) {
               <TouchableOpacity
                 onPress={handleImagePicker}
                 style={styles.attachOptionButton}>
-                <View style={[styles.attachIconWrap, { backgroundColor: '#8B5CF6' }]}>
+                <View style={[styles.attachIconWrap, { backgroundColor: ThemeColors.Primary }]}>
                   <Ionicons name="images" size={24} color={COLORS.WHITE} />
                 </View>
                 <Text style={styles.attachOptionText}>Gallery</Text>
@@ -673,7 +672,7 @@ export default function ExpenseClaim({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   header: {
     flexDirection: 'row',
@@ -903,7 +902,7 @@ const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
     paddingVertical: 12,
   },
   tableHeaderCell: {
@@ -948,7 +947,7 @@ const styles = StyleSheet.create({
   totalAmount: {
     fontSize: 13,
     fontWeight: '700',
-    color: COLORS.AccentBlue,
+    color: ThemeColors.Primary,
     textAlign: 'center',
     paddingHorizontal: 8,
   },

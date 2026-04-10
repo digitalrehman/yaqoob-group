@@ -6,6 +6,7 @@ import SimpleHeader from '../../../../components/SimpleHeader';
 import {APPCOLORS} from '../../../../utils/APPCOLORS';
 import * as Animatable from 'react-native-animatable';
 import {useSelector} from 'react-redux';
+import {ThemeColors} from '../../../../config/Theme';
 
 const buttons = [
   {
@@ -56,7 +57,7 @@ const buttons = [
 export default function InventoryScreen({navigation}) {
   const mobileAccessData = useSelector(state => state.Data.mobileAccessData);
 
-  const renderButton = ({item, index}) => {
+    const renderButton = ({item, index}) => {
     const isDisabled = mobileAccessData?.[0]?.[item.accessKey] === '1';
 
     return (
@@ -68,24 +69,24 @@ export default function InventoryScreen({navigation}) {
         <TouchableOpacity
           activeOpacity={isDisabled ? 1 : 0.85}
           disabled={isDisabled}
-          onPress={() => navigation.navigate(item.screen, item.params || {})}
+          onPress={() => (isDisabled ? null : navigation.navigate(item.screen || item.navigate, item.params || {}))}
           style={styles.buttonContainer}>
           <Animatable.View
             animation="pulse"
             iterationCount="infinite"
             iterationDelay={4000}
             style={styles.iconContainer}>
-            <Icon name={item.icon} size={22} color="#FFFFFF" />
+            <Icon name={item.icon || 'circle'} size={22} color={ThemeColors.Primary} />
           </Animatable.View>
           <View style={{flex: 1}}>
             <Text style={styles.buttonText}>{item.name}</Text>
             {isDisabled && (
-              <Text style={{color: '#94A3B8', fontSize: 10}}>
+              <Text style={{color: ThemeColors.TextMuted, fontSize: 10}}>
                 Access Restricted
               </Text>
             )}
           </View>
-          {isDisabled && <Icon name="lock" size={16} color="#94A3B8" />}
+          {isDisabled && <Icon name="lock" size={16} color={ThemeColors.TextMuted} />}
         </TouchableOpacity>
       </Animatable.View>
     );
@@ -107,13 +108,17 @@ export default function InventoryScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
+  },
+  listContent: {
+    paddingVertical: 16,
+    paddingHorizontal: 16,
   },
   buttonWrapper: {
     marginVertical: 8,
     marginHorizontal: 16,
     borderRadius: 12,
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.15,
@@ -130,11 +135,18 @@ const styles = StyleSheet.create({
     padding: 10,
     marginRight: 12,
     borderRadius: 50,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(232,127,36,0.1)',
+  },
+  textContainer: {
+    flex: 1,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: ThemeColors.Primary,
     fontSize: 16,
     fontWeight: '600',
+  },
+  buttonSubtext: {
+    color: ThemeColors.TextMuted,
+    fontSize: 13,
   },
 });

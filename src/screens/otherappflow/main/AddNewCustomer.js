@@ -120,7 +120,10 @@ const AddNewCustomer = ({navigation}) => {
           paddingHorizontal: 16,
           paddingBottom: 15,
           paddingTop: Platform.OS === 'ios' ? insets.top + 25 : insets.top + 30,
-          backgroundColor: '#1a1c22',
+          backgroundColor: '#E87F24',
+          borderBottomLeftRadius: 15,
+          borderBottomRightRadius: 15,
+          elevation: 5,
         }}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -130,20 +133,17 @@ const AddNewCustomer = ({navigation}) => {
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: '#E0E5EC',
+            backgroundColor: '#FFFFFF',
             shadowColor: '#000',
             shadowOffset: {width: 2, height: 2},
             shadowOpacity: 0.1,
             shadowRadius: 3,
             elevation: 3,
           }}>
-          <Ionicons name="arrow-back" size={20} color="#333" />
+          <Ionicons name="arrow-back" size={20} color="#E87F24" />
         </TouchableOpacity>
 
-        <PlatformGradient
-          colors={['#000000', '#434343']}
-          start={{x: 0, y: 0}}
-          end={{x: 1, y: 1}}
+        <View
           style={{
             flex: 1,
             flexDirection: 'row',
@@ -152,6 +152,7 @@ const AddNewCustomer = ({navigation}) => {
             borderRadius: 10,
             paddingHorizontal: 12,
             marginHorizontal: 10,
+            backgroundColor: '#FFFFFF',
             shadowColor: '#000',
             shadowOffset: {width: 2, height: 2},
             shadowOpacity: 0.1,
@@ -161,17 +162,17 @@ const AddNewCustomer = ({navigation}) => {
           <Ionicons
             name="search"
             size={18}
-            color="#fff"
+            color="#E87F24"
             style={{marginRight: 8}}
           />
           <TextInput
             placeholder="Search"
-            placeholderTextColor="#aaa"
-            style={{flex: 1, fontSize: 14, color: '#fff', padding: 0}}
+            placeholderTextColor="#E87F24"
+            style={{flex: 1, fontSize: 14, color: '#E87F24', padding: 0}}
             onChangeText={txt => setSearch(txt)}
             value={Search}
           />
-        </PlatformGradient>
+        </View>
 
         <TouchableOpacity
           onPress={() =>
@@ -186,10 +187,10 @@ const AddNewCustomer = ({navigation}) => {
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: APPCOLORS.Secondary,
+            backgroundColor: '#FFFFFF',
             elevation: 3,
           }}>
-          <Ionicons name="person-add" size={20} color="#fff" />
+          <Ionicons name="person-add" size={20} color="#E87F24" />
         </TouchableOpacity>
       </View>
 
@@ -208,7 +209,7 @@ const AddNewCustomer = ({navigation}) => {
           {loadermore && (
             <ActivityIndicator
               size="large"
-              color="#1a1c22"
+              color="#E87F24"
               style={{position: 'absolute', top: 10}}
             />
           )}
@@ -264,7 +265,7 @@ export default AddNewCustomer;
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: '#dee2e6',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     marginVertical: 6,
     padding: 15,
@@ -284,11 +285,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   label: {
-    color: '#333',
+    color: '#E87F24',
     fontWeight: 'bold',
   },
   value: {
-    color: '#666',
+    color: '#1E293B',
+    fontWeight: '700',
     maxWidth: '60%',
   },
 });

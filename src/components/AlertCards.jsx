@@ -65,19 +65,19 @@ const AlertCards = ({
                 <Icon
                   name={IconOne || 'file-text'}
                   size={20}
-                  color={APPCOLORS.BLACK}
+                  color="#E87F24"
                 />
                 <AppText
                   title={HeadingOne}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#1E293B"
                 />
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <AppText
                   title={ValueOne}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#E87F24"
                 />
                 {disabledOne && (
                   <Icon
@@ -100,19 +100,19 @@ const AlertCards = ({
                 <Icon
                   name={IconTwo || 'shopping-cart'}
                   size={20}
-                  color={APPCOLORS.BLACK}
+                  color="#E87F24"
                 />
                 <AppText
                   title={HeadingTwo}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#1E293B"
                 />
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <AppText
                   title={ValueTwo}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#E87F24"
                 />
                 {disabledTwo && (
                   <Icon
@@ -135,19 +135,19 @@ const AlertCards = ({
                 <Icon
                   name={IconThree || 'truck'}
                   size={20}
-                  color={APPCOLORS.BLACK}
+                  color="#E87F24"
                 />
                 <AppText
                   title={HeadingThree}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#1E293B"
                 />
               </View>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <AppText
                   title={ValueThree}
                   titleSize={2}
-                  titleColor={APPCOLORS.BLACK}
+                  titleColor="#E87F24"
                 />
                 {disabledThree && (
                   <Icon

@@ -30,8 +30,7 @@ const DeliveryScreen = ({navigation}) => {
 
   const [loading, setLoading] = useState(false);
   const [transactions, setTransactions] = useState([]);
-  console.log('transactions', transactions);
-
+  
   useEffect(() => {
     const today = new Date();
     const lastMonth = new Date();
@@ -310,7 +309,7 @@ const DeliveryScreen = ({navigation}) => {
 
       {/* Transactions */}
       {loading ? (
-        <ActivityIndicator size="large" color="#1a1c22" />
+        <ActivityIndicator size="large" color="#E87F24" />
       ) : transactions.length === 0 ? (
         <View style={{alignItems: 'center', marginTop: 30}}>
           <Icon name="file-alert" size={40} color="#666" />
@@ -367,9 +366,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   dateText: {
-    color: '#333',
+    color: '#E87F24',
     fontSize: 13,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
   },
   dropdown: {
@@ -382,10 +381,10 @@ const styles = StyleSheet.create({
     borderColor: '#E0E0E0',
   },
   placeholderStyle: {fontSize: 14, color: '#999'},
-  selectedTextStyle: {fontSize: 14, color: '#333', fontWeight: '600'},
+  selectedTextStyle: {fontSize: 14, color: '#E87F24', fontWeight: '700'},
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     padding: 12,
     marginHorizontal: 12,
     borderRadius: 10,
@@ -412,7 +411,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
   },
-  cell: {fontSize: 12, color: '#333', textAlign: 'center'},
+  cell: {fontSize: 12, color: '#1E293B', textAlign: 'center', fontWeight: '600'},
   cellWrapper: {
     flex: 1,
     flexDirection: 'row',
@@ -431,7 +430,7 @@ const styles = StyleSheet.create({
     width: 44,
     height: 40,
     borderRadius: 10,
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -446,7 +445,7 @@ const styles = StyleSheet.create({
   },
   actionIcon: {
     padding: 5,
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     borderRadius: 6,
   },
 });

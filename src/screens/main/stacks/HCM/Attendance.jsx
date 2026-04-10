@@ -14,7 +14,7 @@ import {useSelector} from 'react-redux';
 import axios from 'axios';
 import AppText from '../../../../components/AppText';
 import AppButton from '../../../../components/AppButton';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+import {ThemeColors} from '../../../../config/Theme';
 import {
   responsiveHeight,
   responsiveFontSize,
@@ -358,7 +358,7 @@ const Attendance = () => {
         title={label}
         titleSize={1.4}
         titleWeight
-        titleColor={APPCOLORS.BLACK}
+        titleColor={ThemeColors.TextMain}
       />
       <TextInput
         style={[
@@ -384,7 +384,7 @@ const Attendance = () => {
           <RefreshControl
             refreshing={refreshing}
             onRefresh={fetchHistory}
-            colors={[APPCOLORS.Primary]}
+            colors={[ThemeColors.Primary]}
           />
         }>
         {/* Employee Info Card */}
@@ -393,12 +393,12 @@ const Attendance = () => {
             title={userData?.real_name || 'User'}
             titleSize={2.4}
             titleWeight={true}
-            titleColor={APPCOLORS.Primary}
+            titleColor={ThemeColors.Primary}
           />
           <AppText
             title={`Employee Code: ${userData?.emp_code || 'N/A'}`}
             titleSize={1.6}
-            titleColor={APPCOLORS.GRAY}
+            titleColor={ThemeColors.TextMuted}
           />
           <View style={styles.monthBadge}>
             <AppText
@@ -406,7 +406,7 @@ const Attendance = () => {
                 month: 'long',
               })} ${currentYear}`}
               titleSize={1.8}
-              titleColor={APPCOLORS.WHITE}
+              titleColor={ThemeColors.Surface}
               titleWeight
             />
           </View>
@@ -419,14 +419,14 @@ const Attendance = () => {
               title="Daily Attendance"
               titleWeight
               titleSize={2}
-              titleColor={APPCOLORS.Primary}
+              titleColor={ThemeColors.Primary}
             />
             <View style={styles.todayIndicator}>
               <View style={styles.todayDot} />
               <AppText
                 title="Today"
                 titleSize={1.4}
-                titleColor={APPCOLORS.GRAY}
+                titleColor={ThemeColors.TextMuted}
               />
             </View>
           </View>
@@ -452,9 +452,9 @@ const Attendance = () => {
                     title={day.toString()}
                     titleColor={
                       isToday
-                        ? APPCOLORS.WHITE
+                        ? ThemeColors.Surface
                         : isPast
-                        ? APPCOLORS.Secondary
+                        ? ThemeColors.TextMuted
                         : '#CCC'
                     }
                     titleSize={1.8}
@@ -473,7 +473,7 @@ const Attendance = () => {
             title="Today's Logs"
             titleSize={2}
             titleWeight
-            titleColor={APPCOLORS.BLACK}
+            titleColor={ThemeColors.TextMain}
             style={{marginBottom: 15}}
           />
           {attendanceHistory.length === 0 ? (
@@ -481,7 +481,7 @@ const Attendance = () => {
               <AppText
                 title="No records found for today."
                 titleSize={1.4}
-                titleColor={APPCOLORS.GRAY}
+                titleColor={ThemeColors.TextMuted}
               />
             </View>
           ) : (
@@ -494,13 +494,13 @@ const Attendance = () => {
                       <FontAwesome
                         name="clock-o"
                         size={14}
-                        color={APPCOLORS.Primary}
+                        color={ThemeColors.Primary}
                       />
                       <AppText
                         title={formatTime12h(item.ActivityTime)}
                         titleSize={1.4}
                         titleWeight
-                        titleColor={APPCOLORS.Primary}
+                        titleColor={ThemeColors.Primary}
                         style={{marginLeft: 5}}
                       />
                     </View>
@@ -510,7 +510,7 @@ const Attendance = () => {
                         onPress={() => handleCheckOut(item.id)}>
                         <AppText
                           title="Checkout"
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.Surface}
                           titleSize={1.2}
                           titleWeight
                         />
@@ -533,7 +533,7 @@ const Attendance = () => {
                       <FontAwesome
                         name="map-marker"
                         size={16}
-                        color={APPCOLORS.Secondary}
+                        color={ThemeColors.TextMuted}
                         style={{width: 20}}
                       />
                       <View style={{flex: 1}}>
@@ -541,12 +541,12 @@ const Attendance = () => {
                           title={item.site_name || 'Office Entry'}
                           titleSize={1.4}
                           titleWeight
-                          titleColor={APPCOLORS.BLACK}
+                          titleColor={ThemeColors.TextMain}
                         />
                         <AppText
                           title={item.current_location || 'N/A'}
                           titleSize={1.2}
-                          titleColor={APPCOLORS.GRAY}
+                          titleColor={ThemeColors.TextMuted}
                         />
                       </View>
                     </View>
@@ -555,13 +555,13 @@ const Attendance = () => {
                         <FontAwesome
                           name="info-circle"
                           size={16}
-                          color={APPCOLORS.GRAY}
+                          color={ThemeColors.TextMuted}
                           style={{width: 20}}
                         />
                         <AppText
                           title={item.nature_of_visit}
                           titleSize={1.3}
-                          titleColor={APPCOLORS.BLACK}
+                          titleColor={ThemeColors.TextMain}
                           style={{flex: 1}}
                         />
                       </View>
@@ -585,13 +585,13 @@ const Attendance = () => {
               title="Daily Visit Report (DVR)"
               titleSize={2.2}
               titleWeight
-              titleColor={APPCOLORS.Primary}
+              titleColor={ThemeColors.Primary}
             />
             <TouchableOpacity
               onPress={() => !loading && setDVRModalVisible(false)}>
               <AppText
                 title="Close"
-                titleColor={APPCOLORS.Secondary}
+                titleColor={ThemeColors.TextMuted}
                 titleWeight
               />
             </TouchableOpacity>
@@ -602,7 +602,7 @@ const Attendance = () => {
             <AppText
               title="You are out of range. Please submit DVR to mark attendance."
               titleSize={1.4}
-              titleColor={APPCOLORS.GRAY}
+              titleColor={ThemeColors.TextMuted}
               style={{marginBottom: 15}}
             />
             {renderInput('Company Name', 'site_name', 'Enter company name')}
@@ -645,13 +645,13 @@ const Attendance = () => {
             title={feedback.title}
             titleSize={2.6}
             titleWeight
-            titleColor={APPCOLORS.BLACK}
+            titleColor={ThemeColors.TextMain}
             style={{marginTop: 15}}
           />
           <AppText
             title={feedback.message}
             titleSize={1.8}
-            titleColor={APPCOLORS.GRAY}
+            titleColor={ThemeColors.TextMuted}
             titleAlignment="center"
             style={{marginTop: 10, paddingHorizontal: 20}}
           />
@@ -660,13 +660,13 @@ const Attendance = () => {
               styles.successButton,
               {
                 backgroundColor:
-                  feedback.type === 'success' ? APPCOLORS.Primary : '#DC3545',
+                  feedback.type === 'success' ? ThemeColors.Primary : '#DC3545',
               },
             ]}
             onPress={() => setFeedback({...feedback, visible: false})}>
             <AppText
               title="Close"
-              titleColor={APPCOLORS.WHITE}
+              titleColor={ThemeColors.Surface}
               titleWeight
               titleSize={2}
             />
@@ -679,7 +679,7 @@ const Attendance = () => {
         <View style={styles.loadingOverlay}>
           <AppText
             title="Processing..."
-            titleColor={APPCOLORS.WHITE}
+            titleColor={ThemeColors.Surface}
             titleWeight
           />
         </View>
@@ -691,7 +691,7 @@ const Attendance = () => {
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: '#F8F9FA'},
   infoCard: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     margin: 20,
     padding: 20,
     borderRadius: 15,
@@ -703,14 +703,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   monthBadge: {
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
     paddingHorizontal: 20,
     paddingVertical: 8,
     borderRadius: 20,
     marginTop: 15,
   },
   calendarContainer: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     marginHorizontal: 15,
     borderRadius: 20,
     padding: 15,
@@ -730,7 +730,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
     marginRight: 6,
   },
   grid: {flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'flex-start'},
@@ -745,8 +745,8 @@ const styles = StyleSheet.create({
     borderColor: '#F0F0F0',
   },
   todayButton: {
-    backgroundColor: APPCOLORS.Primary,
-    borderColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
+    borderColor: ThemeColors.Primary,
     elevation: 4,
     transform: [{scale: 1.1}],
   },
@@ -758,11 +758,11 @@ const styles = StyleSheet.create({
     width: 4,
     height: 4,
     borderRadius: 2,
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
   },
   historySection: {paddingHorizontal: 20, marginTop: 25},
   historyCard: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 15,
     padding: 15,
     marginBottom: 15,
@@ -790,7 +790,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   outButton: {
-    backgroundColor: APPCOLORS.Secondary,
+    backgroundColor: ThemeColors.TextMuted,
     paddingHorizontal: 15,
     paddingVertical: 6,
     borderRadius: 8,
@@ -814,7 +814,7 @@ const styles = StyleSheet.create({
   },
   modal: {margin: 0, justifyContent: 'flex-end'},
   modalContent: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     padding: 25,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -834,11 +834,11 @@ const styles = StyleSheet.create({
     padding: 12,
     marginTop: 5,
     backgroundColor: '#F9F9F9',
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
     fontSize: responsiveFontSize(1.8),
   },
   successModalContent: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     padding: 30,
     borderRadius: 25,
     alignItems: 'center',

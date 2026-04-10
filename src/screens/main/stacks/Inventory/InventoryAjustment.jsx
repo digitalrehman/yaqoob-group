@@ -17,15 +17,17 @@ import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatNumber, formatQuantity} from '../../../../utils/NumberUtils';
 import SimpleHeader from '../../../../components/SimpleHeader';
 
+import {ThemeColors} from '../../../../config/Theme';
+
 const COLORS = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
-  BG: '#f3f4f6',
-  TEXT_PRIMARY: '#1f2937',
-  TEXT_SECONDARY: '#6b7280',
-  BORDER: '#e5e7eb',
+  WHITE: ThemeColors.Surface,
+  BLACK: ThemeColors.TextMain,
+  Primary: ThemeColors.Primary,
+  Secondary: ThemeColors.TextMuted,
+  BG: ThemeColors.Surface,
+  TEXT_PRIMARY: ThemeColors.TextMain,
+  TEXT_SECONDARY: ThemeColors.TextMuted,
+  BORDER: ThemeColors.Border,
 };
 
 const adjustmentOptions = [
@@ -402,13 +404,13 @@ const styles = StyleSheet.create({
   tableHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: COLORS.BORDER,
+    backgroundColor: COLORS.Primary,
     padding: 8,
     borderRadius: 6,
   },
   tableHeaderText: {
     flex: 1,
-    color: COLORS.TEXT_PRIMARY,
+    color: '#FFF',
     fontWeight: '700',
     textAlign: 'center',
   },

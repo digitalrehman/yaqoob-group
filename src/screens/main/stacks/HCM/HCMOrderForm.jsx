@@ -27,7 +27,8 @@ import {
 import moment from 'moment';
 import NetInfo from '@react-native-community/netinfo';
 import {BASEURL} from '../../../../utils/BaseUrl';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+
+import {ThemeColors} from '../../../../config/Theme';
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from '../../../../utils/Responsive';
 
 const HCMOrderForm = ({navigation, route}) => {
@@ -190,18 +191,18 @@ const HCMOrderForm = ({navigation, route}) => {
           paddingHorizontal: 20,
           paddingTop: paddingTop,
           paddingBottom: paddingBottom,
-          backgroundColor: '#E87F24',
+          backgroundColor: ThemeColors.Primary,
         }}>
         <TouchableOpacity onPress={() => {
             dispatch(setCartData([]));
             navigation.goBack();
         }}>
-          <Ionicons name="arrow-back" size={responsiveFontSize(3)} color={APPCOLORS.WHITE} />
+          <Ionicons name="arrow-back" size={responsiveFontSize(3)} color={ThemeColors.Surface} />
         </TouchableOpacity>
         
         <AppText
             title={mode === 'Return' ? 'Return Items' : 'Take Order'}
-            titleColor={APPCOLORS.WHITE}
+            titleColor={ThemeColors.Surface}
             titleSize={3}
             titleWeight
         />
@@ -212,7 +213,7 @@ const HCMOrderForm = ({navigation, route}) => {
           <View style={styles.badge}>
             <Text style={styles.badgeText}>{cart?.length || 0}</Text>
           </View>
-          <Ionicons name="cart" size={responsiveFontSize(3)} color={APPCOLORS.WHITE} />
+          <Ionicons name="cart" size={responsiveFontSize(3)} color={ThemeColors.Surface} />
         </TouchableOpacity>
       </View>
 
@@ -235,7 +236,7 @@ const HCMOrderForm = ({navigation, route}) => {
               <TouchableOpacity 
                 onPress={() => handleQuantityChange('minus')}
                 style={styles.quantityBtn}>
-                <Ionicons name="remove" size={20} color={APPCOLORS.WHITE} />
+                <Ionicons name="remove" size={20} color={ThemeColors.Surface} />
               </TouchableOpacity>
               
               <TextInput
@@ -248,7 +249,7 @@ const HCMOrderForm = ({navigation, route}) => {
               <TouchableOpacity 
                 onPress={() => handleQuantityChange('plus')}
                 style={styles.quantityBtn}>
-                <Ionicons name="add" size={20} color={APPCOLORS.WHITE} />
+                <Ionicons name="add" size={20} color={ThemeColors.Surface} />
               </TouchableOpacity>
             </View>
           </View>
@@ -279,7 +280,7 @@ const HCMOrderForm = ({navigation, route}) => {
 
           {/* Add Item Button */}
           <TouchableOpacity onPress={addToCart} style={styles.addItemBtn}>
-            <View style={[styles.gradientBtn, { backgroundColor: '#E87F24' }]}>
+            <View style={[styles.gradientBtn, { backgroundColor: ThemeColors.Primary }]}>
               <Text style={styles.btnText}>Add Item</Text>
             </View>
           </TouchableOpacity>
@@ -306,9 +307,9 @@ const HCMOrderForm = ({navigation, route}) => {
             onPress={confirmOrder} 
             disabled={orderLoader}
             style={styles.confirmBtn}>
-            <View style={[styles.gradientBtn, { backgroundColor: '#E87F24' }]}>
+            <View style={[styles.gradientBtn, { backgroundColor: ThemeColors.Primary }]}>
               {orderLoader ? (
-                  <ActivityIndicator color={APPCOLORS.WHITE} />
+                  <ActivityIndicator color={ThemeColors.Surface} />
               ) : (
                 <Text style={styles.btnText}>Confirm order</Text>
               )}
@@ -360,7 +361,7 @@ export default HCMOrderForm;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: ThemeColors.Surface,
   },
   header: {
     paddingHorizontal: 20,
@@ -370,7 +371,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   headerTitle: {
-    color: APPCOLORS.WHITE,
+    color: ThemeColors.Surface,
     fontSize: 18,
     fontWeight: '700',
   },
@@ -389,7 +390,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   badgeText: {
-    color: APPCOLORS.WHITE,
+    color: ThemeColors.Surface,
     fontSize: 10,
     fontWeight: 'bold',
   },
@@ -398,7 +399,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   formContainer: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 20,
     padding: 20,
     elevation: 3,
@@ -408,7 +409,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   inputContainer: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 10,
     padding: 15,
     marginBottom: 15,
@@ -422,12 +423,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
   },
   label: {
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
     fontSize: 14,
     fontWeight: '600',
   },
   inputValue: {
-    color: '#666',
+    color: ThemeColors.TextMuted,
     fontSize: 14,
     width: '60%',
     textAlign: 'right',
@@ -437,7 +438,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   quantityBtn: {
-    backgroundColor: '#E87F24',
+    backgroundColor: ThemeColors.Primary,
     width: 30,
     height: 30,
     borderRadius: 15,
@@ -445,7 +446,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   quantityInput: {
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
     fontSize: 16,
     fontWeight: '700',
     marginHorizontal: 15,
@@ -455,7 +456,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     textAlign: 'right',
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
     fontSize: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
@@ -474,12 +475,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnText: {
-    color: APPCOLORS.WHITE,
+    color: ThemeColors.Surface,
     fontWeight: '700',
     fontSize: 14,
   },
   summaryCard: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 15,
     padding: 20,
     marginBottom: 20,
@@ -500,7 +501,7 @@ const styles = StyleSheet.create({
   },
   summaryValue: {
     fontSize: 14,
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
   },
   divider: {
     height: 1,
@@ -515,7 +516,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: APPCOLORS.WHITE,
+    backgroundColor: ThemeColors.Surface,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     height: '70%',
@@ -533,7 +534,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 45,
     marginLeft: 10,
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
   },
   productItem: {
     paddingVertical: 15,
@@ -542,12 +543,12 @@ const styles = StyleSheet.create({
   },
   productName: {
     fontSize: 15,
-    color: APPCOLORS.BLACK,
+    color: ThemeColors.TextMain,
     fontWeight: '600',
   },
   productCode: {
     fontSize: 12,
-    color: '#999',
+    color: ThemeColors.TextMuted,
     marginTop: 2,
   },
 });

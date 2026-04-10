@@ -15,6 +15,7 @@ import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import SimpleHeader from '../../../../components/SimpleHeader';
+import {ThemeColors} from '../../../../config/Theme';
 
 const HCMInsertNewCustomer = ({navigation, route}) => {
   const [CustomerName, setCustomerName] = useState('');
@@ -219,13 +220,13 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
       <TextInput
         style={styles.textInput}
         placeholder={placeholder}
-        placeholderTextColor="#999"
+        placeholderTextColor={ThemeColors.TextMuted}
         value={value}
         onChangeText={txt => {
           setValue(txt);
         }}
         keyboardType={keyboardType || 'default'}
-        selectionColor="#E87F24"
+        selectionColor={ThemeColors.Primary}
         autoCapitalize="words"
       />
     </Animated.View>
@@ -238,9 +239,9 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          backgroundColor: '#F3F4F6',
+          backgroundColor: ThemeColors.Surface,
         }}>
-        <ActivityIndicator size="large" color="#E87F24" />
+        <ActivityIndicator size="large" color={ThemeColors.Primary} />
       </View>
     );
   }
@@ -284,15 +285,15 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
               labelField="label"
               valueField="value"
               placeholder="Select Tax Group *"
-              placeholderStyle={{color: '#999'}}
+              placeholderStyle={{color: ThemeColors.TextMuted}}
               searchPlaceholder="Search..."
               value={taxValue}
               onChange={item => {
                 setTaxValue(item.value);
               }}
               selectedTextProps={{numberOfLines: 1}}
-              selectedTextStyle={{color: '#333'}}
-              itemTextStyle={{color: '#000'}}
+              selectedTextStyle={{color: ThemeColors.TextMain}}
+              itemTextStyle={{color: ThemeColors.TextMain}}
             />
           </Animated.View>
 
@@ -308,14 +309,14 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
               labelField="label"
               valueField="value"
               placeholder="Select Salesperson *"
-              placeholderStyle={{color: '#999'}}
+              placeholderStyle={{color: ThemeColors.TextMuted}}
               searchPlaceholder="Search..."
               value={salesmanValue}
               onChange={item => {
                 setSalesmanValue(item.value);
               }}
-              selectedTextStyle={{color: '#333'}}
-              itemTextStyle={{color: '#000'}}
+              selectedTextStyle={{color: ThemeColors.TextMain}}
+              itemTextStyle={{color: ThemeColors.TextMain}}
             />
           </Animated.View>
 
@@ -330,13 +331,13 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
               labelField="label"
               valueField="value"
               placeholder="Select Province"
-              placeholderStyle={{color: '#999'}}
+              placeholderStyle={{color: ThemeColors.TextMuted}}
               value={Province}
               onChange={item => {
                 setProvince(item.value);
               }}
-              selectedTextStyle={{color: '#333'}}
-              itemTextStyle={{color: '#000'}}
+              selectedTextStyle={{color: ThemeColors.TextMain}}
+              itemTextStyle={{color: ThemeColors.TextMain}}
             />
           </Animated.View>
         </Animated.View>
@@ -375,7 +376,7 @@ const HCMInsertNewCustomer = ({navigation, route}) => {
             {submitting ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={{color: '#fff', fontSize: 18, fontWeight: '600'}}>
+              <Text style={{color: ThemeColors.Surface, fontSize: 18, fontWeight: '600'}}>
                 Submit
               </Text>
             )}
@@ -391,16 +392,16 @@ export default HCMInsertNewCustomer;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   sectionHeading: {
     fontSize: 18,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontWeight: '700',
     marginBottom: 6,
   },
   glassInput: {
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 12,
     paddingHorizontal: 12,
     borderWidth: 1,
@@ -410,21 +411,21 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 56,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontSize: 16,
   },
   dropdown: {
     height: 56,
     borderRadius: 12,
     paddingHorizontal: 12,
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     borderWidth: 1,
     borderColor: '#E0E0E0',
     justifyContent: 'center',
   },
   submitBtn: {
     height: 56,
-    backgroundColor: '#E87F24',
+    backgroundColor: ThemeColors.Primary,
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',

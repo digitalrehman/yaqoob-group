@@ -98,7 +98,7 @@ const HCMPaymentScreen = ({ navigation, route }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Amount"
-                  placeholderTextColor="#A0A0A0"
+                  placeholderTextColor={ThemeColors.TextMuted}
                   keyboardType="numeric"
                   value={amount}
                   onChangeText={setAmount}
@@ -109,7 +109,7 @@ const HCMPaymentScreen = ({ navigation, route }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Cash in Hand"
-                  placeholderTextColor="#A0A0A0"
+                  placeholderTextColor={ThemeColors.TextMuted}
                   value={cashInHand}
                   onChangeText={setCashInHand}
                 />
@@ -130,7 +130,7 @@ const HCMPaymentScreen = ({ navigation, route }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Bank name"
-                  placeholderTextColor="#A0A0A0"
+                  placeholderTextColor={ThemeColors.TextMuted}
                   value={bankName}
                   onChangeText={setBankName}
                 />
@@ -140,7 +140,7 @@ const HCMPaymentScreen = ({ navigation, route }) => {
                 <TextInput
                   style={styles.input}
                   placeholder="Cheque no"
-                  placeholderTextColor="#A0A0A0"
+                  placeholderTextColor={ThemeColors.TextMuted}
                   value={chequeNo}
                   onChangeText={setChequeNo}
                 />
@@ -151,7 +151,7 @@ const HCMPaymentScreen = ({ navigation, route }) => {
                   <TextInput
                     style={styles.input}
                     placeholder="Amount"
-                    placeholderTextColor="#A0A0A0"
+                    placeholderTextColor={ThemeColors.TextMuted}
                     keyboardType="numeric"
                     value={amount}
                     onChangeText={setAmount}
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#fff',
+    color: ThemeColors.Surface,
   },
   content: {
     padding: 25,
@@ -236,20 +236,20 @@ const styles = StyleSheet.create({
   radioLabel: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#333',
+    color: ThemeColors.TextMain,
     marginLeft: 8,
   },
   sectionTitle: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#222',
+    color: ThemeColors.TextMain,
     marginBottom: 15,
   },
   formContainer: {
     gap: 15,
   },
   inputWrapper: {
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 30,
     elevation: 2,
     shadowColor: '#000',
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   inputWrapperSmall: {
-    backgroundColor: '#fff',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 30,
     width: '48%',
     elevation: 2,
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 20,
     fontSize: 14,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontWeight: '500',
   },
   rowInputs: {
@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 14,
-    color: '#333',
+    color: ThemeColors.TextMain,
     fontWeight: '500',
   },
   separator: {
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   doneBtnText: {
-    color: '#fff',
+    color: ThemeColors.Surface,
     fontSize: 16,
     fontWeight: '700',
   },

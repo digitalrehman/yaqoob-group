@@ -11,6 +11,7 @@ import AlertCards from '../../../../components/AlertCards';
 import {APPCOLORS} from '../../../../utils/APPCOLORS';
 import {useSelector} from 'react-redux';
 import {BASEURL} from '../../../../utils/BaseUrl';
+import {ThemeColors} from '../../../../config/Theme';
 
 const AlertScreen = ({navigation}) => {
   const mobileAccessData = useSelector(state => state.Data.mobileAccessData);
@@ -137,7 +138,7 @@ const AlertScreen = ({navigation}) => {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F3F4F6'}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Surface}}>
       <SimpleHeader title="Approvals" />
       <ScrollView
         contentContainerStyle={{padding: 15}}

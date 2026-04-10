@@ -1,11 +1,11 @@
 import {View, FlatList, TextInput} from 'react-native';
 import React, {useState, useEffect} from 'react';
-import PlatformGradient from '../../../../components/PlatformGradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import NameBalanceContainer from '../../../../components/NameBalanceContainer';
 import CustomerPayableCard from '../../../../components/CustomerPayableCard';
 import {responsiveHeight, responsiveWidth} from '../../../../utils/Responsive';
+import {ThemeColors} from '../../../../config/Theme';
 
 const NormalViewAll = ({navigation, route}) => {
   const {AllData, dataname} = route.params;
@@ -69,9 +69,7 @@ const NormalViewAll = ({navigation, route}) => {
   };
 
   return (
-    <PlatformGradient
-      colors={['#f6f7fb', '#dfe9f3']}
-      style={{flex: 1, paddingBottom: 10}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Background, paddingBottom: 10}}>
       <SimpleHeader title="View All" />
 
       {/* Search Bar */}
@@ -79,7 +77,7 @@ const NormalViewAll = ({navigation, route}) => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          backgroundColor: '#F3F4F6',
+          backgroundColor: ThemeColors.Surface,
           height: responsiveHeight(6.5),
           width: responsiveWidth(90),
           alignSelf: 'center',
@@ -141,7 +139,19 @@ const NormalViewAll = ({navigation, route}) => {
           }
 
           return (
-            <View style={{marginBottom: 12}}>
+            <View style={{
+                marginBottom: 12, 
+                backgroundColor: ThemeColors.Surface, 
+                padding: 14, 
+                borderRadius: 12, 
+                borderWidth: 1,
+                borderColor: ThemeColors.Border,
+                shadowColor: '#000', 
+                shadowOffset: {width: 0, height: 1}, 
+                shadowOpacity: 0.05, 
+                shadowRadius: 4, 
+                elevation: 2
+               }}>
               <NameBalanceContainer
                 Name={Name}
                 balance={Balance}
@@ -152,7 +162,7 @@ const NormalViewAll = ({navigation, route}) => {
           );
         }}
       />
-    </PlatformGradient>
+    </View>
   );
 };
 

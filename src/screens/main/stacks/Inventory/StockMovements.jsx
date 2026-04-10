@@ -16,7 +16,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from 'moment';
 import Toast from 'react-native-toast-message';
 
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+import {ThemeColors} from '../../../../config/Theme';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatNumber, formatQuantity} from '../../../../utils/NumberUtils';
 import SimpleHeader from '../../../../components/SimpleHeader';
@@ -281,8 +281,8 @@ const StockMovements = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F3F4F6'}}>
-      <StatusBar backgroundColor={APPCOLORS.Primary} barStyle="light-content" />
+    <View style={{flex: 1, backgroundColor: ThemeColors.Surface}}>
+      <StatusBar backgroundColor={ThemeColors.Primary} barStyle="light-content" />
 
       {/* ---------------- HEADER ---------------- */}
      <SimpleHeader title="Stock Movements" />
@@ -296,7 +296,7 @@ const StockMovements = ({navigation}) => {
             onPress={() => setShowStockModal(true)}
             disabled={stockLoading}>
             {stockLoading ? (
-              <ActivityIndicator size="small" color={APPCOLORS.Primary} />
+              <ActivityIndicator size="small" color={ThemeColors.Primary} />
             ) : (
               <>
                 <Text
@@ -321,7 +321,7 @@ const StockMovements = ({navigation}) => {
             onPress={() => setShowLocationModal(true)}
             disabled={locationLoading}>
             {locationLoading ? (
-              <ActivityIndicator size="small" color={APPCOLORS.Primary} />
+              <ActivityIndicator size="small" color={ThemeColors.Primary} />
             ) : (
               <>
                 <Text
@@ -444,7 +444,7 @@ const StockMovements = ({navigation}) => {
 
               {stockLoading ? (
                 <View style={styles.modalLoading}>
-                  <ActivityIndicator size="large" color={APPCOLORS.Primary} />
+                  <ActivityIndicator size="large" color={ThemeColors.Primary} />
                   <Text style={styles.loadingText}>Loading stocks...</Text>
                 </View>
               ) : (
@@ -473,7 +473,7 @@ const StockMovements = ({navigation}) => {
                         <Ionicons
                           name="checkmark"
                           size={18}
-                          color={APPCOLORS.Primary}
+                          color={ThemeColors.Primary}
                         />
                       )}
                     </TouchableOpacity>
@@ -535,7 +535,7 @@ const StockMovements = ({navigation}) => {
 
               {locationLoading ? (
                 <View style={styles.modalLoading}>
-                  <ActivityIndicator size="large" color={APPCOLORS.Primary} />
+                  <ActivityIndicator size="large" color={ThemeColors.Primary} />
                   <Text style={styles.loadingText}>Loading locations...</Text>
                 </View>
               ) : (
@@ -559,7 +559,7 @@ const StockMovements = ({navigation}) => {
                         <Ionicons
                           name="checkmark"
                           size={18}
-                          color={APPCOLORS.Primary}
+                          color={ThemeColors.Primary}
                         />
                       )}
                     </TouchableOpacity>
@@ -587,7 +587,7 @@ const StockMovements = ({navigation}) => {
                         <Ionicons
                           name="checkmark"
                           size={18}
-                          color={APPCOLORS.Primary}
+                          color={ThemeColors.Primary}
                         />
                       )}
                     </TouchableOpacity>
@@ -625,7 +625,7 @@ const StockMovements = ({navigation}) => {
       {/* ---------------- TRANSACTIONS LIST ---------------- */}
       {loading ? (
         <View style={styles.mainLoading}>
-          <ActivityIndicator size="large" color={APPCOLORS.Primary} />
+          <ActivityIndicator size="large" color={ThemeColors.Primary} />
           <Text style={styles.loadingText}>Loading stock movements...</Text>
         </View>
       ) : (
@@ -658,7 +658,7 @@ export default StockMovements;
 const styles = StyleSheet.create({
   header: {
     height: 70,
-    backgroundColor: APPCOLORS.Primary,
+    backgroundColor: ThemeColors.Primary,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 15,
@@ -673,7 +673,7 @@ const styles = StyleSheet.create({
   },
 
   filterBox: {
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
     margin: 12,
     padding: 14,
     borderRadius: 14,
@@ -689,7 +689,7 @@ const styles = StyleSheet.create({
 
   dropdown: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Background,
     padding: 12,
     borderRadius: 10,
     elevation: 3,
@@ -700,18 +700,18 @@ const styles = StyleSheet.create({
   },
   dropdownText: {
     fontSize: 14,
-    color: '#000',
+    color: ThemeColors.TextMain,
     flex: 1,
   },
   placeholderText: {
     fontSize: 14,
-    color: '#999',
+    color: ThemeColors.TextMuted,
     flex: 1,
   },
 
   dateBox: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Background,
     padding: 12,
     borderRadius: 10,
     elevation: 3,
@@ -720,11 +720,11 @@ const styles = StyleSheet.create({
   },
   dateTextFilter: {
     fontSize: 14,
-    color: '#000',
+    color: ThemeColors.TextMain,
   },
 
   applyBtn: {
-    backgroundColor: '#000',
+    backgroundColor: ThemeColors.Primary,
     padding: 12,
     borderRadius: 10,
     width: 50,
@@ -753,7 +753,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 8,
     borderLeftWidth: 4,
-    borderLeftColor: APPCOLORS.Primary,
+    borderLeftColor: ThemeColors.Primary,
   },
   balanceItem: {
     alignItems: 'center',
@@ -766,7 +766,7 @@ const styles = StyleSheet.create({
   },
   balanceValue: {
     fontSize: 16,
-    color: APPCOLORS.Primary,
+    color: ThemeColors.Primary,
     fontWeight: 'bold',
     marginTop: 4,
   },
@@ -809,7 +809,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginBottom: 12,
     borderLeftWidth: 4,
-    borderLeftColor: APPCOLORS.Primary,
+    borderLeftColor: ThemeColors.Primary,
   },
   dateText: {
     fontWeight: 'bold',

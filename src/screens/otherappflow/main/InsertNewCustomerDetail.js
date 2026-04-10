@@ -206,7 +206,6 @@ const InsertNewCustomerDetail = ({navigation, route}) => {
     value,
     setValue,
     keyboardType,
-    fieldName,
   ) => (
     <Animated.View
       style={[
@@ -225,7 +224,7 @@ const InsertNewCustomerDetail = ({navigation, route}) => {
           setValue(txt);
         }}
         keyboardType={keyboardType || 'default'}
-        selectionColor="#1a1c22"
+        selectionColor="#E87F24"
         autoCapitalize="words"
       />
     </Animated.View>
@@ -240,7 +239,7 @@ const InsertNewCustomerDetail = ({navigation, route}) => {
           alignItems: 'center',
           backgroundColor: '#F3F4F6',
         }}>
-        <ActivityIndicator size="large" color="#1a1c22" />
+        <ActivityIndicator size="large" color="#E87F24" />
       </View>
     );
   }
@@ -424,7 +423,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     height: 56,
-    backgroundColor: '#1a1c22',
+    backgroundColor: '#E87F24',
     borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',

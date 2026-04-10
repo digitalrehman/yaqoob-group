@@ -1,13 +1,13 @@
 import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
 import AppText from './AppText';
-import {APPCOLORS} from '../utils/APPCOLORS';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {formatNumber} from '../utils/NumberUtils';
+import {ThemeColors} from '../config/Theme';
 
 const NameBalanceContainer = ({Name, type, balance, item, darkMode}) => {
-  const textColor = darkMode ? '#FFFFFF' : APPCOLORS.PRIMARY;
+  const textColor = darkMode ? '#FFFFFF' : ThemeColors.TextMain;
   const navigation = useNavigation();
 
   const handleAgingPress = () => {
@@ -48,7 +48,7 @@ const NameBalanceContainer = ({Name, type, balance, item, darkMode}) => {
             titleSize={1.6}
             titleColor={textColor}
           />
-          <Icon name="chevron-right" size={22} color={textColor} />
+          <Icon name="chevron-right" size={22} color={ThemeColors.Primary} />
         </View>
       </TouchableOpacity>
     );
@@ -80,19 +80,19 @@ const NameBalanceContainer = ({Name, type, balance, item, darkMode}) => {
               <TouchableOpacity
                 onPress={handleLedgerPress}
                 hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}>
-                <Icon name="receipt-long" size={20} color={textColor} />
+                <Icon name="receipt-long" size={20} color={ThemeColors.Primary} />
               </TouchableOpacity>
             ) : (
               <>
                 <TouchableOpacity
                   onPress={handleAgingPress}
                   hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}>
-                  <Icon name="calendar-today" size={20} color={textColor} />
+                  <Icon name="calendar-today" size={20} color={ThemeColors.Primary} />
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={handleLedgerPress}
                   hitSlop={{top: 8, bottom: 8, left: 8, right: 8}}>
-                  <Icon name="receipt-long" size={20} color={textColor} />
+                  <Icon name="receipt-long" size={20} color={ThemeColors.Primary} />
                 </TouchableOpacity>
               </>
             )}

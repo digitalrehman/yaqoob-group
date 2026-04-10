@@ -3,16 +3,18 @@ import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import * as Animatable from 'react-native-animatable';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
+
 import {useSelector} from 'react-redux';
 
+import {ThemeColors} from '../../../../config/Theme';
+
 const COLORS = {
-  WHITE: '#FFFFFF',
-  PRIMARY: '#1a1c22',
-  Background: '#F3F4F6',
-  Border: '#E2E8F0',
-  TextDark: '#1E293B',
-  TextMuted: '#64748B',
+  WHITE: ThemeColors.Surface,
+  PRIMARY: ThemeColors.Primary,
+  Background: ThemeColors.Surface,
+  Border: ThemeColors.Border,
+  TextDark: ThemeColors.TextMain,
+  TextMuted: ThemeColors.TextMuted,
 };
 
 export default function HCMScreen({navigation}) {
@@ -56,7 +58,7 @@ export default function HCMScreen({navigation}) {
     },
   ];
 
-  const renderButton = ({item, index}) => {
+    const renderButton = ({item, index}) => {
     const isDisabled = mobileAccessData?.[0]?.[item.accessKey] === '1';
 
     return (
@@ -64,28 +66,28 @@ export default function HCMScreen({navigation}) {
         animation="fadeInUp"
         delay={index * 120}
         useNativeDriver
-        style={styles.buttonWrapper}>
+        style={[styles.buttonWrapper, {opacity: isDisabled ? 0.5 : 1}]}>
         <TouchableOpacity
-          activeOpacity={isDisabled ? 1 : 0.7}
+          activeOpacity={isDisabled ? 1 : 0.85}
           disabled={isDisabled}
-          onPress={() => (isDisabled ? null : navigation.navigate(item.screen))}
-          style={[styles.buttonContainer, {opacity: isDisabled ? 0.5 : 1}]}>
-          <View style={[styles.iconContainer, {backgroundColor: item.color}]}>
-            <Icon name={item.icon} size={24} color={COLORS.WHITE} />
-          </View>
-          <View style={styles.textContainer}>
+          onPress={() => (isDisabled ? null : navigation.navigate(item.screen || item.navigate, item.params || {}))}
+          style={styles.buttonContainer}>
+          <Animatable.View
+            animation="pulse"
+            iterationCount="infinite"
+            iterationDelay={4000}
+            style={styles.iconContainer}>
+            <Icon name={item.icon || 'circle'} size={22} color={ThemeColors.Primary} />
+          </Animatable.View>
+          <View style={{flex: 1}}>
             <Text style={styles.buttonText}>{item.name}</Text>
-            <Text style={styles.buttonSubtext}>
-              {isDisabled
-                ? 'Access Restricted'
-                : `Manage ${item.name.toLowerCase()}`}
-            </Text>
+            {isDisabled && (
+              <Text style={{color: ThemeColors.TextMuted, fontSize: 10}}>
+                Access Restricted
+              </Text>
+            )}
           </View>
-          {isDisabled ? (
-            <Icon name="lock" size={24} color="#94A3B8" />
-          ) : (
-            <Icon name="chevron-right" size={24} color={COLORS.TextMuted} />
-          )}
+          {isDisabled && <Icon name="lock" size={16} color={ThemeColors.TextMuted} />}
         </TouchableOpacity>
       </Animatable.View>
     );
@@ -107,50 +109,45 @@ export default function HCMScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.Background,
+    backgroundColor: ThemeColors.Surface,
   },
   listContent: {
     paddingVertical: 16,
     paddingHorizontal: 16,
   },
   buttonWrapper: {
-    marginBottom: 12,
-    borderRadius: 16,
-    overflow: 'hidden',
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
     shadowOffset: {width: 0, height: 2},
-    elevation: 3,
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 4,
   },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
-    borderRadius: 16,
-    backgroundColor: COLORS.WHITE,
-    borderWidth: 1,
-    borderColor: COLORS.Border,
+    padding: 18,
+    borderRadius: 12,
   },
   iconContainer: {
-    width: 48,
-    height: 48,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 14,
+    padding: 10,
+    marginRight: 12,
+    borderRadius: 50,
+    backgroundColor: 'rgba(232,127,36,0.1)',
   },
   textContainer: {
     flex: 1,
   },
   buttonText: {
-    color: COLORS.TextDark,
+    color: ThemeColors.Primary,
     fontSize: 16,
     fontWeight: '600',
-    marginBottom: 2,
   },
   buttonSubtext: {
-    color: COLORS.TextMuted,
+    color: ThemeColors.TextMuted,
     fontSize: 13,
   },
 });

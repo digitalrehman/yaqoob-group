@@ -8,6 +8,7 @@ import AppButton from '../../../../components/AppButton';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import axios from 'axios';
 import {formatNumber} from '../../../../utils/NumberUtils';
+import {ThemeColors} from '../../../../config/Theme';
 
 const ShowUnapprovedDetails = ({route, navigation}) => {
   const {dataDetail, type} = route.params;
@@ -72,7 +73,7 @@ const ShowUnapprovedDetails = ({route, navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Surface}}>
       <SimpleHeader title="Alerts Details" />
 
       <View style={{padding: 20}}>
@@ -109,8 +110,15 @@ const ShowUnapprovedDetails = ({route, navigation}) => {
               <View
                 style={{
                   padding: 20,
-                  backgroundColor: APPCOLORS.Secondary,
+                  backgroundColor: ThemeColors.Surface,
                   borderRadius: 10,
+                  borderWidth: 1,
+                  borderColor: ThemeColors.Border,
+                  shadowColor: '#000',
+                  shadowOffset: {width: 0, height: 2},
+                  shadowOpacity: 0.1,
+                  shadowRadius: 5,
+                  elevation: 3
                 }}>
                 {type == 'Voucher' ? (
                   <>

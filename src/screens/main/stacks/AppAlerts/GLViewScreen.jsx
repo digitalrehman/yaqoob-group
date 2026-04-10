@@ -3,7 +3,7 @@ import {View, ScrollView, Animated} from 'react-native';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import AppText from '../../../../components/AppText';
 import {APPCOLORS} from '../../../../utils/APPCOLORS';
-import PlatformGradient from '../../../../components/PlatformGradient';
+import {ThemeColors} from '../../../../config/Theme';
 import {formatNumber} from '../../../../utils/NumberUtils';
 
 const GLViewScreen = ({route}) => {
@@ -97,15 +97,11 @@ const GLViewScreen = ({route}) => {
                 transform: [{translateY: slideAnim}],
               },
             ]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.card}>
+            <View style={styles.card}>
               <AppText
                 title="Transaction Information"
                 titleSize={3}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
                 style={styles.cardTitle}
               />
@@ -115,12 +111,12 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Reference:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={header.reference || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
 
@@ -128,12 +124,12 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Date:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={formatDate(header.trans_date)}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
 
@@ -141,12 +137,12 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Party Name:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={header.name || 'N/A'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
 
@@ -154,12 +150,12 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Prepared By:"
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                   <AppText
                     title={header.real_name || 'Administrator'}
                     titleSize={2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                   />
                 </View>
 
@@ -170,12 +166,12 @@ const GLViewScreen = ({route}) => {
                       <AppText
                         title="Instrument No"
                         titleSize={2}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMain}
                       />
                       <AppText
                         title={header.cheque_no || 'N/A'}
                         titleSize={2}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMain}
                       />
                     </View>
                     {header.cheque_date && (
@@ -183,19 +179,19 @@ const GLViewScreen = ({route}) => {
                         <AppText
                           title="Instrument Date"
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                         <AppText
                           title={formatDate(header.cheque_date)}
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                         />
                       </View>
                     )}
                   </>
                 )}
               </View>
-            </PlatformGradient>
+            </View>
           </Animated.View>
         )}
 
@@ -209,15 +205,11 @@ const GLViewScreen = ({route}) => {
                 transform: [{translateY: slideAnim}],
               },
             ]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 1}}
-              style={styles.card}>
+            <View style={styles.card}>
               <AppText
                 title={`GL Entries (${details.length})`}
                 titleSize={3}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
                 style={styles.cardTitle}
               />
@@ -236,15 +228,13 @@ const GLViewScreen = ({route}) => {
                       ],
                     },
                   ]}>
-                  <PlatformGradient
-                    colors={['rgba(255,255,255,0.1)', 'rgba(255,255,255,0.05)']}
-                    style={styles.entryGradient}>
+                  <View style={styles.entryGradient}>
                     {/* Serial Number Badge */}
                     <View style={styles.serialBadge}>
                       <AppText
                         title={`${index + 1}`}
                         titleSize={1.6}
-                        titleColor={APPCOLORS.WHITE}
+                        titleColor={ThemeColors.TextMain}
                         titleWeight
                       />
                     </View>
@@ -254,7 +244,7 @@ const GLViewScreen = ({route}) => {
                         <AppText
                           title={`${entry.account || 'N/A'} - ${entry.account_name || 'N/A'}`}
                           titleSize={2}
-                          titleColor={APPCOLORS.WHITE}
+                          titleColor={ThemeColors.TextMain}
                           style={styles.accountNameWrap}
                         />
                       </View>
@@ -265,13 +255,13 @@ const GLViewScreen = ({route}) => {
                             <AppText
                               title="Debit:"
                               titleSize={2}
-                              titleColor={APPCOLORS.WHITE}
+                              titleColor={ThemeColors.TextMain}
                               titleWeight
                             />
                             <AppText
                               title={formatAmountDisplay(entry.debit)}
                               titleSize={2}
-                              titleColor={APPCOLORS.WHITE}
+                              titleColor={ThemeColors.TextMain}
                               titleWeight
                             />
                           </View>
@@ -282,13 +272,13 @@ const GLViewScreen = ({route}) => {
                             <AppText
                               title="Credit:"
                               titleSize={2}
-                              titleColor={APPCOLORS.WHITE}
+                              titleColor={ThemeColors.TextMain}
                               titleWeight
                             />
                             <AppText
                               title={formatAmountDisplay(entry.credit)}
                               titleSize={2}
-                              titleColor={APPCOLORS.WHITE}
+                              titleColor={ThemeColors.TextMain}
                               titleWeight
                             />
                           </View>
@@ -303,14 +293,14 @@ const GLViewScreen = ({route}) => {
                             <AppText
                               title={entry.memo_}
                               titleSize={2}
-                              titleColor={APPCOLORS.WHITE}
+                              titleColor={ThemeColors.TextMain}
                               style={styles.memoText}
                             />
                           </View>
                         )}
 
                     </View>
-                  </PlatformGradient>
+                  </View>
                 </Animated.View>
               ))}
 
@@ -320,13 +310,13 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Total Debit:"
                     titleSize={2.2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                   <AppText
                     title={formatAmountDisplay(totalDebit)}
                     titleSize={2.2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                 </View>
@@ -334,18 +324,18 @@ const GLViewScreen = ({route}) => {
                   <AppText
                     title="Total Credit:"
                     titleSize={2.2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                   <AppText
                     title={formatAmountDisplay(totalCredit)}
                     titleSize={2.2}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextMain}
                     titleWeight
                   />
                 </View>
               </View>
-            </PlatformGradient>
+            </View>
           </Animated.View>
         )}
       </ScrollView>
@@ -356,7 +346,7 @@ const GLViewScreen = ({route}) => {
 const styles = {
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   scrollView: {
     flex: 1,
@@ -376,6 +366,7 @@ const styles = {
   },
   card: {
     padding: 20,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 20,
   },
   cardTitle: {
@@ -397,6 +388,7 @@ const styles = {
   },
   entryGradient: {
     padding: 10,
+    backgroundColor: ThemeColors.Background,
     borderRadius: 10,
     position: 'relative',
   },
@@ -404,7 +396,7 @@ const styles = {
     position: 'absolute',
     top: 8,
     right: 8,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: ThemeColors.Primary,
     borderRadius: 10,
     paddingHorizontal: 8,
     paddingVertical: 2,
@@ -439,7 +431,7 @@ const styles = {
     marginTop: 8,
     paddingTop: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.2)',
+    borderTopColor: ThemeColors.Border,
   },
   amountItem: {
     flex: 1,
@@ -452,7 +444,7 @@ const styles = {
     marginTop: 8,
     paddingTop: 8,
     borderTopWidth: 1,
-    borderTopColor: 'rgba(255,255,255,0.2)',
+    borderTopColor: ThemeColors.Border,
   },
   memoText: {
     marginTop: 4,
@@ -464,7 +456,7 @@ const styles = {
   },
   divider: {
     height: 1,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: ThemeColors.Border,
     marginBottom: 12,
   },
   totalsRow: {

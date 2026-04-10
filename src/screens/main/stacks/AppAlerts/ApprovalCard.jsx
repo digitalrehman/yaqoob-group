@@ -7,11 +7,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
-import PlatformGradient from '../../../../components/PlatformGradient';
 import AppText from '../../../../components/AppText';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
-import axios from 'axios';
 import Toast from 'react-native-toast-message';
+import {ThemeColors} from '../../../../config/Theme';
 import {generateAndDownloadPDF} from '../../../../components/PDFGenerator';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatDateString} from '../../../../utils/DateUtils';
@@ -205,17 +203,13 @@ const ApprovalCard = ({
       delay={index ? index * 100 : 200}
       useNativeDriver
       style={styles.cardWrapper}>
-      <PlatformGradient
-        colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-        start={{x: 0, y: 0}}
-        end={{x: 1, y: 1}}
-        style={styles.card}>
+      <View style={styles.card}>
         {/* Top row: Reference and Serial No */}
         <View style={styles.topRow}>
           <AppText
             title={reference}
             titleSize={2}
-            titleColor={APPCOLORS.WHITE}
+            titleColor={ThemeColors.TextMain}
             titleWeight
           />
           {serialNo && (
@@ -223,7 +217,7 @@ const ApprovalCard = ({
               <AppText
                 title={`${serialNo}`}
                 titleSize={1.8}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
             </View>
@@ -237,17 +231,17 @@ const ApprovalCard = ({
               <AppText
                 title={`Reference: ${reference}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               <AppText
                 title={`Cost Center: ${name}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               <AppText
                 title={`Date: ${formatDateString(ord_date)}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
             </>
           ) : screenType === 'quotation_approval' ? (
@@ -255,17 +249,17 @@ const ApprovalCard = ({
               <AppText
                 title={`Date: ${formatDateString(ord_date)}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               <AppText
                 title={name}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               <AppText
                 title={`Total: ${formatNumber(total)}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
             </>
@@ -274,24 +268,24 @@ const ApprovalCard = ({
               <AppText
                 title={name}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               {location_name ? (
                 <AppText
                   title={`Cost Center: ${location_name}`}
                   titleSize={2}
-                  titleColor={APPCOLORS.WHITE}
+                  titleColor={ThemeColors.TextMuted}
                 />
               ) : null}
               <AppText
                 title={`Date: ${formatDateString(ord_date)}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMuted}
               />
               <AppText
                 title={`Total: ${formatNumber(total)}`}
                 titleSize={2}
-                titleColor={APPCOLORS.WHITE}
+                titleColor={ThemeColors.TextMain}
                 titleWeight
               />
             </>
@@ -305,22 +299,18 @@ const ApprovalCard = ({
             onPress={handleView}
             disabled={viewLoading}
             style={[styles.buttonWrapper, styles.halfButton]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Secondary, APPCOLORS.Primary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              style={styles.button}>
+            <View style={styles.button}>
               {viewLoading ? (
-                <ActivityIndicator size="small" color={APPCOLORS.WHITE} />
+                <ActivityIndicator size="small" color={ThemeColors.TextLight} />
               ) : (
                 <AppText
                   title="View"
                   titleSize={1.8}
-                  titleColor={APPCOLORS.WHITE}
+                  titleColor={ThemeColors.TextLight}
                   titleWeight
                 />
               )}
-            </PlatformGradient>
+            </View>
           </TouchableOpacity>
 
           {/* PDF Button */}
@@ -328,22 +318,18 @@ const ApprovalCard = ({
             onPress={handleDownloadPDF}
             disabled={downloadLoading}
             style={[styles.buttonWrapper, styles.halfButton]}>
-            <PlatformGradient
-              colors={[APPCOLORS.Secondary, APPCOLORS.Primary]}
-              start={{x: 0, y: 0}}
-              end={{x: 1, y: 0}}
-              style={styles.button}>
+            <View style={styles.button}>
               {downloadLoading ? (
-                <ActivityIndicator size="small" color={APPCOLORS.WHITE} />
+                <ActivityIndicator size="small" color={ThemeColors.TextLight} />
               ) : (
                 <AppText
                   title="PDF"
                   titleSize={1.8}
-                  titleColor={APPCOLORS.WHITE}
+                  titleColor={ThemeColors.TextLight}
                   titleWeight
                 />
               )}
-            </PlatformGradient>
+            </View>
           </TouchableOpacity>
         </View>
 
@@ -358,22 +344,21 @@ const ApprovalCard = ({
                 styles.buttonWrapper,
                 isVoucherScreen ? styles.halfButton : styles.fullButton,
               ]}>
-              <PlatformGradient
-                colors={[APPCOLORS.Secondary, APPCOLORS.Primary]}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={styles.button}>
+              <View style={styles.button}>
                 {approveLoading ? (
-                  <ActivityIndicator size="small" color={APPCOLORS.WHITE} />
+                  <ActivityIndicator
+                    size="small"
+                    color={ThemeColors.TextLight}
+                  />
                 ) : (
                   <AppText
                     title="Approve"
                     titleSize={1.8}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextLight}
                     titleWeight
                   />
                 )}
-              </PlatformGradient>
+              </View>
             </TouchableOpacity>
           )}
 
@@ -386,22 +371,25 @@ const ApprovalCard = ({
                 styles.buttonWrapper,
                 isVoucherScreen ? styles.halfButton : styles.fullButton,
               ]}>
-              <PlatformGradient
-                colors={[APPCOLORS.Secondary, APPCOLORS.Primary]}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={styles.button}>
+              <View
+                style={[
+                  styles.button,
+                  {backgroundColor: ThemeColors.Secondary},
+                ]}>
                 {unapproveLoading ? (
-                  <ActivityIndicator size="small" color={APPCOLORS.WHITE} />
+                  <ActivityIndicator
+                    size="small"
+                    color={ThemeColors.TextLight}
+                  />
                 ) : (
                   <AppText
                     title="Un-approve"
                     titleSize={1.8}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextLight}
                     titleWeight
                   />
                 )}
-              </PlatformGradient>
+              </View>
             </TouchableOpacity>
           )}
 
@@ -411,26 +399,25 @@ const ApprovalCard = ({
               onPress={handleGLView}
               disabled={glViewLoading}
               style={[styles.buttonWrapper, styles.halfButton]}>
-              <PlatformGradient
-                colors={[APPCOLORS.Secondary, APPCOLORS.Primary]}
-                start={{x: 0, y: 0}}
-                end={{x: 1, y: 0}}
-                style={styles.button}>
+              <View style={styles.button}>
                 {glViewLoading ? (
-                  <ActivityIndicator size="small" color={APPCOLORS.WHITE} />
+                  <ActivityIndicator
+                    size="small"
+                    color={ThemeColors.TextLight}
+                  />
                 ) : (
                   <AppText
                     title="GL View"
                     titleSize={1.8}
-                    titleColor={APPCOLORS.WHITE}
+                    titleColor={ThemeColors.TextLight}
                     titleWeight
                   />
                 )}
-              </PlatformGradient>
+              </View>
             </TouchableOpacity>
           )}
         </View>
-      </PlatformGradient>
+      </View>
     </Animatable.View>
   );
 };
@@ -444,11 +431,15 @@ const styles = StyleSheet.create({
   },
   card: {
     padding: 20,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 20,
-    shadowColor: APPCOLORS.BLACK,
-    shadowOpacity: 0.3,
+    borderWidth: 1,
+    borderColor: ThemeColors.Border,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
     shadowOffset: {width: 0, height: 4},
     shadowRadius: 6,
+    elevation: 3,
   },
   topRow: {
     flexDirection: 'row',
@@ -457,12 +448,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   serialBadge: {
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    backgroundColor: ThemeColors.Background,
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 15,
     borderWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.3)',
+    borderColor: ThemeColors.Border,
   },
   detailsContainer: {
     marginBottom: 15,
@@ -485,6 +476,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
+    backgroundColor: ThemeColors.Primary,
     paddingVertical: 8,
     paddingHorizontal: 4,
     borderRadius: 8,

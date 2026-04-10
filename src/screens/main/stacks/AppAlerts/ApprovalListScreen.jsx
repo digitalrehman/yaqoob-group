@@ -19,6 +19,7 @@ import {useSelector} from 'react-redux';
 import Toast from 'react-native-toast-message';
 import {BASEURL} from '../../../../utils/BaseUrl';
 import {formatDate} from '../../../../utils/DateUtils';
+import {ThemeColors} from '../../../../config/Theme';
 
 const ApprovalListScreen = ({route, navigation}) => {
   const {listKey, title, isApproved = false} = route.params;
@@ -468,7 +469,7 @@ const ApprovalListScreen = ({route, navigation}) => {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: '#F3F4F6'}}>
+    <View style={{flex: 1, backgroundColor: ThemeColors.Surface}}>
       <SimpleHeader title={title || 'Approvals'} />
 
       {/* Filter Section - Black & White Theme */}

@@ -13,10 +13,11 @@ import SimpleHeader from '../../../../components/SimpleHeader';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {fetchApprovedData} from '../../../../redux/ApprovedSlice';
 import * as Animatable from 'react-native-animatable';
+import {ThemeColors} from '../../../../config/Theme';
 
 const ApprovedRecordsScreen = ({navigation, route}) => {
   const {screenType = 'sales'} = route.params || {};
-    
+
   const dispatch = useDispatch();
   const {approvalCounts, loading} = useSelector(state => state.Approved);
   const [refreshing, setRefreshing] = useState(false);
@@ -51,7 +52,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Sale Quotations',
             count: approvalCounts.quotation_approval || '0',
             icon: 'file-document-outline',
-            color: '#3498db',
+            color: ThemeColors.Primary,
             listKey: 'quotation_approval',
           },
           {
@@ -59,7 +60,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Sale Orders',
             count: approvalCounts.so_approval || '0',
             icon: 'cart-check',
-            color: '#27ae60',
+            color: ThemeColors.Primary,
             listKey: 'so_approval',
           },
           {
@@ -67,7 +68,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Delivery Notes',
             count: approvalCounts.delivery_approval || '0',
             icon: 'truck-delivery',
-            color: '#e67e22',
+            color: ThemeColors.Primary,
             listKey: 'delivery_approval',
           },
         ];
@@ -78,7 +79,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Purchase Orders',
             count: approvalCounts.po_approval || '0',
             icon: 'cart-arrow-down',
-            color: '#3498db',
+            color: ThemeColors.Primary,
             listKey: 'po_approval',
           },
           {
@@ -86,7 +87,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'GRN',
             count: approvalCounts.grn_approval || '0',
             icon: 'package-variant-closed',
-            color: '#27ae60',
+            color: ThemeColors.Primary,
             listKey: 'grn_approval',
           },
           {
@@ -94,7 +95,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Purchase Invoices',
             count: approvalCounts.po_invoice_approval || '0',
             icon: 'file-document',
-            color: '#e67e22',
+            color: ThemeColors.Primary,
             listKey: 'po_invoice_approval',
           },
         ];
@@ -105,7 +106,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Location Transfers',
             count: approvalCounts.location_transfer_app || '0',
             icon: 'swap-horizontal',
-            color: '#3498db',
+            color: ThemeColors.Primary,
             listKey: 'location_transfer_app',
           },
           {
@@ -113,7 +114,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Adjustments',
             count: approvalCounts.adjustment_app || '0',
             icon: 'tune-vertical',
-            color: '#e74c3c',
+            color: ThemeColors.Primary,
             listKey: 'adjustment_app',
           },
         ];
@@ -124,7 +125,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Vouchers',
             count: approvalCounts.voucher_approval || '0',
             icon: 'credit-card-outline',
-            color: '#3498db',
+            color: ThemeColors.Primary,
             listKey: 'voucher_approval',
           },
         ];
@@ -135,7 +136,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Electrical Job Cards',
             count: approvalCounts.electrocal_job_cards || '0',
             icon: 'flash',
-            color: '#f1c40f',
+            color: ThemeColors.Primary,
             listKey: 'electrocal_job_cards',
           },
           {
@@ -143,7 +144,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
             label: 'Mechanical Job Cards',
             count: approvalCounts.mechnical_job_cards || '0',
             icon: 'cog',
-            color: '#95a5a6',
+            color: ThemeColors.Primary,
             listKey: 'mechnical_job_cards',
           },
         ];
@@ -226,7 +227,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
       {/* Loading or Content */}
       {loading && !refreshing ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#1a1c22" />
+          <ActivityIndicator size="large" color={ThemeColors.Primary} />
           <Text style={styles.loadingText}>Loading transactions...</Text>
         </View>
       ) : (
@@ -255,7 +256,7 @@ const ApprovedRecordsScreen = ({navigation, route}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Surface,
   },
   listContent: {
     padding: 12,
@@ -286,8 +287,8 @@ const styles = StyleSheet.create({
   },
   cardLabel: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#1a1c22',
+    fontWeight: '700',
+    color: ThemeColors.Primary,
     marginBottom: 4,
   },
   cardCount: {
