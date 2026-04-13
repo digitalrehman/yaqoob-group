@@ -14,8 +14,9 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import SimpleHeader from '../../../../components/SimpleHeader';
+
 import { Dropdown } from 'react-native-element-dropdown';
-import PlatformGradient from '../../../../components/PlatformGradient';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
 import axios from 'axios';
@@ -58,13 +59,11 @@ export default function ExpenseClaim({ navigation, route }) {
   const onRefresh = route?.params?.onRefresh;
 
   // Claim Details State
-  const [submissionDate, setSubmissionDate] = useState(new Date());
   const [selectedPurpose, setSelectedPurpose] = useState(null);
   const [otherPurposeText, setOtherPurposeText] = useState('');
   const [accompaniedBy, setAccompaniedBy] = useState('');
 
   // Date Picker States
-  const [showSubmissionDatePicker, setShowSubmissionDatePicker] = useState(false);
   const [showItemDatePicker, setShowItemDatePicker] = useState(false);
 
   // Expense Item Form State
@@ -263,7 +262,7 @@ export default function ExpenseClaim({ navigation, route }) {
       }));
 
       const formData = new FormData();
-      formData.append('trans_date', formatDateForApi(submissionDate));
+      formData.append('trans_date', formatDateForApi(new Date()));
       formData.append('expense_type', selectedPurpose.toString());
       formData.append('amount', totalAmount.toString());
       formData.append('user_id', userId);
@@ -281,7 +280,7 @@ export default function ExpenseClaim({ navigation, route }) {
       }
 
       console.log('Submitting expense claim:', {
-        trans_date: formatDateForApi(submissionDate),
+        trans_date: formatDateForApi(new Date()),
         expense_type: selectedPurpose,
         amount: totalAmount,
         user_id: userId,
@@ -309,7 +308,6 @@ export default function ExpenseClaim({ navigation, route }) {
         setExpenseCategory(null);
         setDescription('');
         setAmount('');
-        setSubmissionDate(new Date());
         setSelectedPurpose(null);
         setOtherPurposeText('');
         setAccompaniedBy('');
@@ -344,14 +342,7 @@ export default function ExpenseClaim({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <PlatformGradient colors={[ThemeColors.Primary, ThemeColors.Primary]} style={[styles.header, { paddingTop }]}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="chevron-back" color={COLORS.WHITE} size={28} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>New Expense Claim</Text>
-        <View style={{ width: 28 }} />
-      </PlatformGradient>
+      <SimpleHeader title="Expense Claim" />
 
       <ScrollView
         style={styles.scrollView}
@@ -361,17 +352,6 @@ export default function ExpenseClaim({ navigation, route }) {
         {/* Claim Details Card */}
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Claim Details</Text>
-
-          {/* Claim Submission Date */}
-          <View style={styles.fieldRow}>
-            <Text style={styles.fieldLabel}>Claim Submission Date:</Text>
-            <TouchableOpacity
-              style={styles.dateInputField}
-              onPress={() => setShowSubmissionDatePicker(true)}>
-              <Text style={styles.dateInputText}>{formatDate(submissionDate)}</Text>
-              <Ionicons name="calendar-outline" size={20} color={COLORS.LabelColor} />
-            </TouchableOpacity>
-          </View>
 
           {/* Purpose of Expense */}
           <View style={styles.purposeSection}>
@@ -619,16 +599,6 @@ export default function ExpenseClaim({ navigation, route }) {
         <View style={{ height: 40 }} />
       </ScrollView>
 
-      {/* Date Pickers */}
-      <DateTimePickerModal
-        isVisible={showSubmissionDatePicker}
-        mode="date"
-        onConfirm={(date) => {
-          setSubmissionDate(date);
-          setShowSubmissionDatePicker(false);
-        }}
-        onCancel={() => setShowSubmissionDatePicker(false)}
-      />
 
       <DateTimePickerModal
         isVisible={showItemDatePicker}
@@ -768,7 +738,7 @@ const styles = StyleSheet.create({
   checkboxRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8FAFC',
+    backgroundColor: ThemeColors.Background,
     paddingHorizontal: 12,
     paddingVertical: 10,
     borderRadius: 8,
@@ -809,7 +779,7 @@ const styles = StyleSheet.create({
 
   // Add Item Form Styles
   addItemForm: {
-    backgroundColor: '#F8FAFC',
+    backgroundColor: ThemeColors.Background,
     borderRadius: 12,
     padding: 16,
     marginBottom: 16,

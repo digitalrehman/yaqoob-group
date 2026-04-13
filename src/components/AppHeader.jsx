@@ -1,27 +1,29 @@
-import { View, TouchableOpacity, Platform } from 'react-native';
+import {View, TouchableOpacity, Platform} from 'react-native';
 import React from 'react';
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from '../utils/Responsive';
+import {
+  responsiveFontSize,
+  responsiveHeight,
+  responsiveWidth,
+} from '../utils/Responsive';
 import AppText from './AppText';
-import { ThemeColors } from '../config/Theme';
+import {ThemeColors} from '../config/Theme';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { useNavigation } from '@react-navigation/native';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLogout } from '../redux/AuthSlice';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {setLogout} from '../redux/AuthSlice';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const AppHeader = ({ title, onPress }) => {
+const AppHeader = ({title, onPress}) => {
   const userData = useSelector(state => state.Data.currentData);
   const dispatch = useDispatch();
   const nav = useNavigation();
   const insets = useSafeAreaInsets();
 
   // iOS ke liye proper padding, Android ke liye extra vertical padding
-  const paddingTop = Platform.OS === 'ios' 
-      ? insets.top + 10 
-      : insets.top + 15; // Android ke liye extra padding
+  const paddingTop = Platform.OS === 'ios' ? insets.top + 10 : insets.top + 15; // Android ke liye extra padding
 
   return (
     <View
@@ -34,13 +36,18 @@ const AppHeader = ({ title, onPress }) => {
         borderBottomRightRadius: 30,
         elevation: 6,
         shadowColor: ThemeColors.Primary,
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: {width: 0, height: 5},
         shadowOpacity: 0.3,
         shadowRadius: 8,
       }}>
-      
       {/* Top Welcome & Brand Row */}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: 20,
+        }}>
         <View>
           <AppText
             title="Yaqoob Group"
@@ -55,15 +62,15 @@ const AppHeader = ({ title, onPress }) => {
           />
         </View>
         <View
-            style={{
-              height: 40,
-              width: 40,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: ThemeColors.Surface,
-              borderRadius: 20,
-            }}>
-            <AppText title="MA" titleColor={ThemeColors.Primary} titleWeight/>
+          style={{
+            height: 40,
+            width: 40,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: ThemeColors.Surface,
+            borderRadius: 20,
+          }}>
+          <AppText title="MA" titleColor={ThemeColors.Primary} titleWeight />
         </View>
       </View>
 
@@ -73,41 +80,43 @@ const AppHeader = ({ title, onPress }) => {
           flexDirection: 'row',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          gap: 15,
+          gap: 5,
         }}>
-          <TouchableOpacity onPress={() => onPress?.('bell')} style={{ padding: 5 }}>
-            <FontAwesome
-              name="bell"
-              color={ThemeColors.TextLight}
-              size={20}
-            />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onPress?.('bell')}
+          style={{padding: 5}}>
+          <Ionicons
+            name="notifications-outline"
+            color={ThemeColors.TextLight}
+            size={20}
+          />
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => onPress?.('mail')} style={{ padding: 5 }}>
-            <Entypo
-              name="mail"
-              color={ThemeColors.TextLight}
-              size={20}
-            />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => onPress?.('mail')}
+          style={{padding: 5}}>
+          <Entypo name="mail" color={ThemeColors.TextLight} size={20} />
+        </TouchableOpacity>
 
-          <View style={{ height: 15, backgroundColor: 'rgba(255,255,255,0.4)', width: 1 }} />
+        <View
+          style={{
+            height: 15,
+            backgroundColor: 'rgba(255,255,255,0.4)',
+            width: 1,
+          }}
+        />
 
-          <TouchableOpacity onPress={() => nav.navigate('ProfitAndLossScreen')} style={{ padding: 5 }}>
-            <Ionicons
-              name="person"
-              color={ThemeColors.TextLight}
-              size={20}
-            />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => nav.navigate('ProfitAndLossScreen')}
+          style={{padding: 5}}>
+          <Ionicons name="person" color={ThemeColors.TextLight} size={20} />
+        </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => dispatch(setLogout())} style={{ padding: 5 }}>
-            <AntDesign
-              name="poweroff"
-              color={ThemeColors.Surface}
-              size={20}
-            />
-          </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => dispatch(setLogout())}
+          style={{padding: 5}}>
+          <AntDesign name="poweroff" color={ThemeColors.Surface} size={20} />
+        </TouchableOpacity>
       </View>
     </View>
   );

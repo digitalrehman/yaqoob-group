@@ -362,6 +362,13 @@ const Detail = ({navigation}) => {
           </View>
         )}
 
+        {/* Management Controls Button */}
+        <TouchableOpacity
+          style={[styles.securityBtn, {marginBottom: 10, backgroundColor: '#2C3E50'}]}
+          onPress={() => navigation.navigate('ManagementControls')}>
+          <Text style={styles.securityBtnText}>Management Controls</Text>
+        </TouchableOpacity>
+
         {/* Security Rule Button */}
         <TouchableOpacity
           style={styles.securityBtn}

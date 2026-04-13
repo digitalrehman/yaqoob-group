@@ -8,12 +8,20 @@ import {ThemeColors} from '../config/Theme';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
-const SimpleHeader = ({title}) => {
+const SimpleHeader = ({title, rightIcon, onRightPress}) => {
   const nav = useNavigation();
   const insets = useSafeAreaInsets();
 
   const paddingTop = Platform.OS === 'ios' ? insets.top + 25 : insets.top + 30;
   const paddingBottom = Platform.OS === 'ios' ? 20 : 25;
+
+  const handleRightPress = () => {
+    if (onRightPress) {
+      onRightPress();
+    } else {
+      nav.navigate('Dashboard');
+    }
+  };
 
   return (
     <View
@@ -27,7 +35,7 @@ const SimpleHeader = ({title}) => {
         paddingBottom: paddingBottom,
         elevation: 6,
         shadowColor: ThemeColors.Primary,
-        shadowOffset: { width: 0, height: 4 },
+        shadowOffset: {width: 0, height: 4},
         shadowOpacity: 0.3,
         shadowRadius: 5,
         borderBottomLeftRadius: 15,
@@ -48,9 +56,9 @@ const SimpleHeader = ({title}) => {
         titleWeight
       />
 
-      <TouchableOpacity onPress={() => nav.navigate('Dashboard')}>
+      <TouchableOpacity onPress={handleRightPress}>
         <Ionicons
-          name={'person'}
+          name={rightIcon || 'person'}
           size={responsiveFontSize(3)}
           color={APPCOLORS.WHITE}
         />

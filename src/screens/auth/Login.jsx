@@ -15,6 +15,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {CurrentLogin} from '../../redux/AuthSlice';
 import Toast from 'react-native-toast-message';
+import {ThemeColors} from '../../config/Theme';
+
 
 const Login = ({navigation}) => {
   const [username, setUsername] = useState('');
@@ -45,7 +47,7 @@ const Login = ({navigation}) => {
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1, backgroundColor: '#F3F4F6'}}
+      style={{flex: 1, backgroundColor: ThemeColors.Background}}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 0}>
       <ScrollView
@@ -74,7 +76,7 @@ const Login = ({navigation}) => {
             style={{
               fontSize: 22,
               fontWeight: 'bold',
-              color: '#1a1c22',
+              color: ThemeColors.Primary,
               textAlign: 'center',
             }}>
             Yaqoob Group
@@ -84,7 +86,7 @@ const Login = ({navigation}) => {
         {/* Login Card */}
         <View
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: ThemeColors.Surface,
             borderRadius: 15,
             padding: 25,
             width: '90%',
@@ -95,7 +97,7 @@ const Login = ({navigation}) => {
             shadowRadius: 6,
             elevation: 5,
             borderWidth: 1,
-            borderColor: '#E0E0E0',
+            borderColor: ThemeColors.Border,
           }}>
           {/* Username Input */}
           <TextInput
@@ -144,9 +146,9 @@ const Login = ({navigation}) => {
         <TouchableOpacity
           onPress={() => navigation.navigate('Registration')}
           style={{marginTop: 25, alignItems: 'center'}}>
-          <Text style={{color: '#666', fontSize: 15}}>
+          <Text style={{color: ThemeColors.TextMuted, fontSize: 15}}>
             Don't have an account?{' '}
-            <Text style={{color: '#1a1c22', fontWeight: 'bold'}}>Sign Up</Text>
+            <Text style={{color: ThemeColors.Primary, fontWeight: 'bold'}}>Sign Up</Text>
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -158,28 +160,28 @@ export default Login;
 
 const styles = StyleSheet.create({
   input: {
-    color: '#333',
-    backgroundColor: '#F8F9FA',
+    color: ThemeColors.TextMain,
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 12,
     paddingHorizontal: 15,
     paddingVertical: 12,
     marginBottom: 15,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#E0E0E0',
+    borderColor: ThemeColors.Border,
   },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8F9FA',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E0E0E0',
+    borderColor: ThemeColors.Border,
     marginBottom: 15,
   },
   passwordInput: {
     flex: 1,
-    color: '#333',
+    color: ThemeColors.TextMain,
     paddingHorizontal: 15,
     paddingVertical: 12,
     fontSize: 16,
@@ -188,7 +190,7 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   button: {
-    backgroundColor: '#1a1c22',
+    backgroundColor: ThemeColors.Primary,
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 8,

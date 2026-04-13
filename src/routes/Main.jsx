@@ -26,6 +26,8 @@ import AgingAndLedger from '../screens/main/stacks/AgingAndLedger/AgingAndLedger
 import ViewAllTopTen from '../screens/main/stacks/DetailScreens/TopTen/ViewAllTopTen';
 import ShowUnapprovedDetails from '../screens/main/stacks/AppAlerts/ShowUnapprovedDetails';
 import SecurityRule from '../screens/main/stacks/DetailScreens/SecurityRule';
+import GeneralAlertsScreen from '../screens/main/stacks/General/GeneralAlertsScreen';
+import ManagementControls from '../screens/main/stacks/DetailScreens/ManagementControls';
 
 //other app
 import Home from '../screens/otherappflow/main/Home';
@@ -99,6 +101,7 @@ import HCMNewOrders from '../screens/main/stacks/HCM/HCMNewOrders';
 import HCMInsertNewCustomer from '../screens/main/stacks/HCM/HCMInsertNewCustomer';
 import HCMOrderForm from '../screens/main/stacks/HCM/HCMOrderForm';
 import HCMPaymentScreen from '../screens/main/stacks/HCM/HCMPaymentScreen';
+import SalesmanDashboard from '../screens/main/stacks/HCM/SalesmanDashboard';
 
 const Stack = createNativeStackNavigator();
 const Main = () => {
@@ -141,6 +144,14 @@ const Main = () => {
       <Stack.Screen name="TopTenScreen" component={TopTenScreen} />
       <Stack.Screen name="ViewAllTopTen" component={ViewAllTopTen} />
       <Stack.Screen name="SecurityRule" component={SecurityRule} />
+      <Stack.Screen
+        name="GeneralAlertsScreen"
+        component={GeneralAlertsScreen}
+      />
+      <Stack.Screen
+        name="ManagementControls"
+        component={ManagementControls}
+      />
 
       <Stack.Screen name="AgingAndLedger" component={AgingAndLedger} />
       <Stack.Screen
@@ -244,6 +255,7 @@ const Main = () => {
       />
       <Stack.Screen name="HCMOrderForm" component={HCMOrderForm} />
       <Stack.Screen name="HCMPaymentScreen" component={HCMPaymentScreen} />
+      <Stack.Screen name="SalesmanDashboard" component={SalesmanDashboard} />
     </Stack.Navigator>
   );
 };

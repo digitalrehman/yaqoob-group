@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import PlatformGradient from '../../../../components/PlatformGradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleHeader from '../../../../components/SimpleHeader';
-import {APPCOLORS} from '../../../../utils/APPCOLORS';
 import * as Animatable from 'react-native-animatable';
 import {useSelector} from 'react-redux';
 import {ThemeColors} from '../../../../config/Theme';
@@ -57,7 +55,7 @@ const buttons = [
 export default function InventoryScreen({navigation}) {
   const mobileAccessData = useSelector(state => state.Data.mobileAccessData);
 
-    const renderButton = ({item, index}) => {
+  const renderButton = ({item, index}) => {
     const isDisabled = mobileAccessData?.[0]?.[item.accessKey] === '1';
 
     return (
@@ -69,14 +67,25 @@ export default function InventoryScreen({navigation}) {
         <TouchableOpacity
           activeOpacity={isDisabled ? 1 : 0.85}
           disabled={isDisabled}
-          onPress={() => (isDisabled ? null : navigation.navigate(item.screen || item.navigate, item.params || {}))}
+          onPress={() =>
+            isDisabled
+              ? null
+              : navigation.navigate(
+                  item.screen || item.navigate,
+                  item.params || {},
+                )
+          }
           style={styles.buttonContainer}>
           <Animatable.View
             animation="pulse"
             iterationCount="infinite"
             iterationDelay={4000}
             style={styles.iconContainer}>
-            <Icon name={item.icon || 'circle'} size={22} color={ThemeColors.Primary} />
+            <Icon
+              name={item.icon || 'circle'}
+              size={22}
+              color={ThemeColors.Primary}
+            />
           </Animatable.View>
           <View style={{flex: 1}}>
             <Text style={styles.buttonText}>{item.name}</Text>
@@ -86,7 +95,9 @@ export default function InventoryScreen({navigation}) {
               </Text>
             )}
           </View>
-          {isDisabled && <Icon name="lock" size={16} color={ThemeColors.TextMuted} />}
+          {isDisabled && (
+            <Icon name="lock" size={16} color={ThemeColors.TextMuted} />
+          )}
         </TouchableOpacity>
       </Animatable.View>
     );
@@ -111,8 +122,7 @@ const styles = StyleSheet.create({
     backgroundColor: ThemeColors.Surface,
   },
   listContent: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 16,
   },
   buttonWrapper: {
     marginVertical: 8,

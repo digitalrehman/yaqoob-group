@@ -21,6 +21,7 @@ import {ThemeColors} from '../../config/Theme';
 import {AppImages} from '../../assets/images/AppImages';
 import Modal from 'react-native-modal';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {BASEURL} from '../../utils/BaseUrl';
 import axios from 'axios';
 import moment from 'moment';
@@ -36,15 +37,46 @@ const Dashboard = ({navigation}) => {
   const [AllData, setAllData] = useState();
   const [Type, setType] = useState();
   const [firstLoad, setFirstLoad] = useState(true);
-  const [showMore, setShowMore] = useState(false);
 
   const [loader, setLoader] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
   const dispatch = useDispatch();
+
+  const announcements = [
+    {
+      id: 'a1',
+      title: '🕋 Umrah Ticket Reward',
+      message: 'Achieve 100% of your Quarterly Target to win a fully sponsored Umrah Ticket!',
+      color: '#E87F24',
+      icon: 'ticket-confirmation',
+    },
+    {
+      id: 'a2',
+      title: '🚗 Brand New Car',
+      message: 'Reach the Annual Diamond Milestone and drive away in a brand new high-end Sedan.',
+      color: '#2C3E50',
+      icon: 'car-back',
+    },
+    {
+      id: 'a3',
+      title: '✨ Car Upgrade Offer',
+      message: 'Best performing salesman of the month gets a premium car upgrade for 6 months.',
+      color: '#27AE60',
+      icon: 'car-arrow-right',
+    },
+    {
+      id: 'a4',
+      title: '🌍 Leadership Seminar',
+      message: 'Top regional leads are invited to an exclusive Leadership Seminar in Dubai next month.',
+      color: '#8E44AD',
+      icon: 'map-marker-radius',
+    },
+  ];
 
   console.log('mobileAccessData', mobileAccessData);
 
-  // Main cards (first 8)
-  const mainCards = [
+  // All cards combined
+  const allCards = [
     {
       id: 1,
       name: 'Dashboard',
@@ -101,10 +133,6 @@ const Dashboard = ({navigation}) => {
       onPress: () => navigation.navigate('CrmScreen'),
       disabled: mobileAccessData?.[0]?.crm === '1',
     },
-  ];
-
-  // More cards (shown after clicking More)
-  const moreCards = [
     {
       id: 9,
       name: 'Finance',
@@ -120,23 +148,6 @@ const Dashboard = ({navigation}) => {
       disabled: mobileAccessData?.[0]?.attach_doc === '1',
     },
   ];
-
-  // More button card
-  const moreButton = {
-    id: 'more',
-    name: showMore ? 'Less' : 'More',
-    icon: showMore ? 'chevron-up' : 'more-horizontal',
-    onPress: () => setShowMore(!showMore),
-    isMoreButton: true,
-  };
-
-  // Combine cards based on showMore state
-  const getDisplayCards = () => {
-    if (showMore) {
-      return [...mainCards, ...moreCards, moreButton];
-    }
-    return [...mainCards, moreButton];
-  };
 
   useEffect(() => {
     if (firstLoad) {
@@ -195,7 +206,12 @@ const Dashboard = ({navigation}) => {
       <AppHeader
         title={'Dashboard'}
         onPress={res => {
-          setVisible(true), setType(res);
+          if (res === 'bell') {
+            navigation.navigate('GeneralAlertsScreen');
+          } else {
+            setVisible(true);
+            setType(res);
+          }
         }}
       />
       {loader && (
@@ -350,7 +366,7 @@ const Dashboard = ({navigation}) => {
             gap: 12,
             marginTop: 25,
           }}>
-          {getDisplayCards().map(item => (
+          {allCards.map(item => (
             <DashboardTabs
               key={item.id}
               icon={item.icon}
@@ -388,43 +404,74 @@ const Dashboard = ({navigation}) => {
         </View>
 
         <FlatList
-          data={mainCards}
+          data={announcements}
           horizontal
-          contentContainerStyle={{gap: 20, paddingLeft: 10, marginTop: 10}}
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onScroll={(e) => {
+            const slide = Math.round(e.nativeEvent.contentOffset.x / responsiveWidth(90));
+            if (activeSlide !== slide) setActiveSlide(slide);
+          }}
+          contentContainerStyle={{paddingLeft: responsiveWidth(5), paddingRight: responsiveWidth(5), marginTop: 15}}
           renderItem={({item}) => {
             return (
               <View
                 style={{
                   height: responsiveHeight(18),
-                  width: responsiveWidth(80),
-                  backgroundColor: ThemeColors.Primary,
-                  borderRadius: 20,
-                  padding: 20,
-                  justifyContent: 'center',
-                  gap: 15,
-                  elevation: 6,
-                  shadowColor: ThemeColors.Primary,
-                  shadowOffset: { width: 0, height: 4 },
-                  shadowOpacity: 0.3,
-                  shadowRadius: 6,
+                  width: responsiveWidth(90),
+                  marginRight: 0,
+                  paddingRight: 20,
                 }}>
-                <AppText
-                  title="🎉 New Feature Release"
-                  titleColor={ThemeColors.TextLight}
-                  titleSize={2.2}
-                  titleWeight
-                />
-                <View style={{width: responsiveWidth(70)}}>
-                  <AppText
-                    title='Inventory tracking has been enhanced! Check it out under the "Warehouse" module.'
-                    titleColor={ThemeColors.TextLight}
-                    titleSize={1.6}
-                  />
+                <View style={{
+                    flex: 1,
+                    backgroundColor: item.color,
+                    borderRadius: 24,
+                    padding: 24,
+                    justifyContent: 'center',
+                    elevation: 8,
+                    shadowColor: item.color,
+                    shadowOffset: { width: 0, height: 6 },
+                    shadowOpacity: 0.4,
+                    shadowRadius: 10,
+                }}>
+                    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12}}>
+                        <AppText
+                            title={item.title}
+                            titleColor={ThemeColors.TextLight}
+                            titleSize={2.2}
+                            titleWeight
+                        />
+                        <View style={{backgroundColor: 'rgba(255,255,255,0.2)', padding: 8, borderRadius: 12}}>
+                           <Icon name={item.icon} size={24} color="#FFF" />
+                        </View>
+                    </View>
+                    <View style={{width: responsiveWidth(70)}}>
+                        <AppText
+                            title={item.message}
+                            titleColor={ThemeColors.TextLight}
+                            titleSize={1.5}
+                        />
+                    </View>
                 </View>
               </View>
             );
           }}
         />
+
+        {/* Pagination Dots */}
+        <View style={{flexDirection: 'row', justifyContent: 'center', marginTop: 15, gap: 8}}>
+            {announcements.map((_, i) => (
+                <View 
+                    key={i} 
+                    style={{
+                        height: 6, 
+                        width: activeSlide === i ? 24 : 6, 
+                        borderRadius: 3, 
+                        backgroundColor: activeSlide === i ? ThemeColors.Primary : ThemeColors.Border,
+                    }} 
+                />
+            ))}
+        </View>
       </ScrollView>
     </View>
   );

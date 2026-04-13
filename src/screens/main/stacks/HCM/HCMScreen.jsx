@@ -3,19 +3,8 @@ import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleHeader from '../../../../components/SimpleHeader';
 import * as Animatable from 'react-native-animatable';
-
 import {useSelector} from 'react-redux';
-
 import {ThemeColors} from '../../../../config/Theme';
-
-const COLORS = {
-  WHITE: ThemeColors.Surface,
-  PRIMARY: ThemeColors.Primary,
-  Background: ThemeColors.Surface,
-  Border: ThemeColors.Border,
-  TextDark: ThemeColors.TextMain,
-  TextMuted: ThemeColors.TextMuted,
-};
 
 export default function HCMScreen({navigation}) {
   const mobileAccessData = useSelector(state => state.Data.mobileAccessData);
@@ -32,33 +21,35 @@ export default function HCMScreen({navigation}) {
       name: 'Expense Claim',
       icon: 'file-document-edit',
       screen: 'ExpenseClaimInquiry',
-      color: '#EF4444',
       accessKey: 'hcm_expense_claim',
     },
     {
       name: 'DVR Inquiry',
       icon: 'card-search-outline',
       screen: 'DVRInquiry',
-      color: '#6366F1',
       accessKey: 'hcm_dvr_inquiry',
     },
     {
       name: 'Local Purchase',
       icon: 'cart-plus',
       screen: 'LocalPurchase',
-      color: '#10B981',
       accessKey: 'hcm_local_purchase',
     },
     {
       name: 'New Orders',
       icon: 'account-multiple-plus',
       screen: 'HCMNewOrders',
-      color: '#6366F1',
       accessKey: 'hcm_new_orders',
+    },
+    {
+      name: 'Salesman Dashboard',
+      icon: 'view-dashboard-outline',
+      screen: 'SalesmanDashboard',
+      accessKey: 'hcm_salesman_dashboard',
     },
   ];
 
-    const renderButton = ({item, index}) => {
+  const renderButton = ({item, index}) => {
     const isDisabled = mobileAccessData?.[0]?.[item.accessKey] === '1';
 
     return (
@@ -70,14 +61,25 @@ export default function HCMScreen({navigation}) {
         <TouchableOpacity
           activeOpacity={isDisabled ? 1 : 0.85}
           disabled={isDisabled}
-          onPress={() => (isDisabled ? null : navigation.navigate(item.screen || item.navigate, item.params || {}))}
+          onPress={() =>
+            isDisabled
+              ? null
+              : navigation.navigate(
+                  item.screen || item.navigate,
+                  item.params || {},
+                )
+          }
           style={styles.buttonContainer}>
           <Animatable.View
             animation="pulse"
             iterationCount="infinite"
             iterationDelay={4000}
             style={styles.iconContainer}>
-            <Icon name={item.icon || 'circle'} size={22} color={ThemeColors.Primary} />
+            <Icon
+              name={item.icon || 'circle'}
+              size={22}
+              color={ThemeColors.Primary}
+            />
           </Animatable.View>
           <View style={{flex: 1}}>
             <Text style={styles.buttonText}>{item.name}</Text>
@@ -87,7 +89,9 @@ export default function HCMScreen({navigation}) {
               </Text>
             )}
           </View>
-          {isDisabled && <Icon name="lock" size={16} color={ThemeColors.TextMuted} />}
+          {isDisabled && (
+            <Icon name="lock" size={16} color={ThemeColors.TextMuted} />
+          )}
         </TouchableOpacity>
       </Animatable.View>
     );
@@ -117,7 +121,6 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     marginVertical: 8,
-    marginHorizontal: 16,
     borderRadius: 12,
     backgroundColor: ThemeColors.Surface,
     shadowColor: '#000',

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -10,38 +10,39 @@ import {
   FlatList,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import PlatformGradient from '../../../../components/PlatformGradient';
+import SimpleHeader from '../../../../components/SimpleHeader';
+import {ThemeColors} from '../../../../config/Theme';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import axios from 'axios';
-import { BASEURL } from '../../../../utils/BaseUrl';
-import { useSelector } from 'react-redux';
-import { formatNumber } from '../../../../utils/NumberUtils';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { APPCOLORS } from '../../../../utils/APPCOLORS';
-import { generateAndDownloadPDF } from '../../../../components/PDFGenerator';
+import {BASEURL} from '../../../../utils/BaseUrl';
+import {useSelector} from 'react-redux';
+import {formatNumber} from '../../../../utils/NumberUtils';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {APPCOLORS} from '../../../../utils/APPCOLORS';
+import {generateAndDownloadPDF} from '../../../../components/PDFGenerator';
 import Toast from 'react-native-toast-message';
 
 const COLORS = {
-  WHITE: '#FFFFFF',
-  BLACK: '#000000',
-  Primary: '#1a1c22',
-  Secondary: '#5a5c6a',
-  CardBg: '#F8FAFC',
-  Border: '#E2E8F0',
-  LabelColor: '#64748B',
-  TextDark: '#1E293B',
-  AccentBlue: '#3B82F6',
-  CheckboxActive: '#10B981',
+  WHITE: ThemeColors.Surface,
+  BLACK: ThemeColors.TextMain,
+  Primary: ThemeColors.Primary,
+  Secondary: ThemeColors.TextMuted,
+  CardBg: ThemeColors.Surface,
+  Border: ThemeColors.Border,
+  LabelColor: ThemeColors.TextMuted,
+  TextDark: ThemeColors.TextMain,
+  AccentBlue: ThemeColors.Primary,
+  CheckboxActive: ThemeColors.Primary,
 };
 
 // Helper to get default date range (1 month)
 const getDefaultDateRange = () => {
   const today = new Date();
   const fromDate = new Date(today.getFullYear(), today.getMonth(), 1); // First day of current month
-  return { fromDate, toDate: today };
+  return {fromDate, toDate: today};
 };
 
-export default function ExpenseClaimInquiry({ navigation }) {
+export default function ExpenseClaimInquiry({navigation}) {
   const insets = useSafeAreaInsets();
   const userData = useSelector(state => state.Data.currentData);
   const employeeId = userData?.employee_id;
@@ -51,10 +52,12 @@ export default function ExpenseClaimInquiry({ navigation }) {
   const [inquiryLoading, setInquiryLoading] = useState(false);
   const [viewLoading, setViewLoading] = useState(false);
   const [pdfLoading, setPdfLoading] = useState(false);
-  const { fromDate: defaultFromDate, toDate: defaultToDate } = getDefaultDateRange();
+  const {fromDate: defaultFromDate, toDate: defaultToDate} =
+    getDefaultDateRange();
   const [filterFromDate, setFilterFromDate] = useState(defaultFromDate);
   const [filterToDate, setFilterToDate] = useState(defaultToDate);
-  const [showFilterFromDatePicker, setShowFilterFromDatePicker] = useState(false);
+  const [showFilterFromDatePicker, setShowFilterFromDatePicker] =
+    useState(false);
   const [showFilterToDatePicker, setShowFilterToDatePicker] = useState(false);
 
   // Fetch inquiry data on mount
@@ -62,7 +65,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
     fetchInquiryData();
   }, []);
 
-  const formatDateForApi = (date) => {
+  const formatDateForApi = date => {
     const d = new Date(date);
     return d.toISOString().split('T')[0];
   };
@@ -84,7 +87,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
       const response = await axios.post(
         `${BASEURL}expense_claim_inquiry.php`,
         formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
+        {headers: {'Content-Type': 'multipart/form-data'}},
       );
 
       console.log('Inquiry response:', response.data);
@@ -103,7 +106,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
     }
   };
 
-  const formatDisplayDate = (dateString) => {
+  const formatDisplayDate = dateString => {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
@@ -112,18 +115,16 @@ export default function ExpenseClaimInquiry({ navigation }) {
     return `${day}/${month}/${year}`;
   };
 
-  const handleView = async (item) => {
+  const handleView = async item => {
     setViewLoading(true);
     try {
       const formData = new FormData();
       formData.append('trans_no', item.trans_no);
       formData.append('type', item.type);
 
-      const response = await axios.post(
-        `${BASEURL}view_gl.php`,
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+      const response = await axios.post(`${BASEURL}view_gl.php`, formData, {
+        headers: {'Content-Type': 'multipart/form-data'},
+      });
 
       console.log('GL View response:', response.data);
 
@@ -140,18 +141,16 @@ export default function ExpenseClaimInquiry({ navigation }) {
     }
   };
 
-  const handlePDF = async (item) => {
+  const handlePDF = async item => {
     setPdfLoading(true);
     try {
       const formData = new FormData();
       formData.append('trans_no', item.trans_no);
       formData.append('type', item.type);
 
-      const response = await axios.post(
-        `${BASEURL}view_data.php`,
-        formData,
-        { headers: { 'Content-Type': 'multipart/form-data' } }
-      );
+      const response = await axios.post(`${BASEURL}view_data.php`, formData, {
+        headers: {'Content-Type': 'multipart/form-data'},
+      });
 
       console.log('PDF data response:', response.data);
 
@@ -169,9 +168,9 @@ export default function ExpenseClaimInquiry({ navigation }) {
     }
   };
 
-  const renderInquiryItem = ({ item, index }) => {
+  const renderInquiryItem = ({item, index}) => {
     const isApproved = item.approval === '0' || item.approval === 0;
-    
+
     return (
       <View style={styles.inquiryCard}>
         <View style={styles.inquiryHeader}>
@@ -179,19 +178,25 @@ export default function ExpenseClaimInquiry({ navigation }) {
             <Text style={styles.inquiryRef}>{item.reference || 'N/A'}</Text>
             <Text style={styles.inquiryName}>{item.name || 'N/A'}</Text>
           </View>
-          <View style={[
-            styles.approvalBadge,
-            isApproved ? styles.approvalBadgeApproved : styles.approvalBadgeUnapproved
-          ]}>
-            <Ionicons 
-              name={isApproved ? "checkmark-circle" : "close-circle"} 
-              size={14} 
-              color={isApproved ? '#16A34A' : '#DC2626'} 
-            />
-            <Text style={[
-              styles.approvalText,
-              isApproved ? styles.approvalTextApproved : styles.approvalTextUnapproved
+          <View
+            style={[
+              styles.approvalBadge,
+              isApproved
+                ? styles.approvalBadgeApproved
+                : styles.approvalBadgeUnapproved,
             ]}>
+            <Ionicons
+              name={isApproved ? 'checkmark-circle' : 'close-circle'}
+              size={14}
+              color={isApproved ? '#16A34A' : '#DC2626'}
+            />
+            <Text
+              style={[
+                styles.approvalText,
+                isApproved
+                  ? styles.approvalTextApproved
+                  : styles.approvalTextUnapproved,
+              ]}>
               {isApproved ? 'Approved' : 'Unapproved'}
             </Text>
           </View>
@@ -199,14 +204,22 @@ export default function ExpenseClaimInquiry({ navigation }) {
 
         <View style={styles.inquiryBody}>
           <View style={styles.inquiryRow}>
-            <Ionicons name="calendar-outline" size={16} color={COLORS.LabelColor} />
-            <Text style={styles.inquiryDateText}>{formatDisplayDate(item.ord_date)}</Text>
+            <Ionicons
+              name="calendar-outline"
+              size={16}
+              color={COLORS.LabelColor}
+            />
+            <Text style={styles.inquiryDateText}>
+              {formatDisplayDate(item.ord_date)}
+            </Text>
           </View>
-          <Text style={styles.inquiryTotal}>Rs. {formatNumber(item.total || 0)}</Text>
+          <Text style={styles.inquiryTotal}>
+            Rs. {formatNumber(item.total || 0)}
+          </Text>
         </View>
 
         <View style={styles.inquiryFooter}>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={styles.actionBtn}
             onPress={() => handleView(item)}
             disabled={viewLoading}>
@@ -214,12 +227,16 @@ export default function ExpenseClaimInquiry({ navigation }) {
               <ActivityIndicator size="small" color={COLORS.AccentBlue} />
             ) : (
               <>
-                <Ionicons name="eye-outline" size={18} color={COLORS.AccentBlue} />
+                <Ionicons
+                  name="eye-outline"
+                  size={18}
+                  color={COLORS.AccentBlue}
+                />
                 <Text style={styles.actionBtnText}>View</Text>
               </>
             )}
           </TouchableOpacity>
-          <TouchableOpacity 
+          <TouchableOpacity
             style={[styles.actionBtn, styles.actionBtnPdf]}
             onPress={() => handlePDF(item)}
             disabled={pdfLoading}>
@@ -227,8 +244,14 @@ export default function ExpenseClaimInquiry({ navigation }) {
               <ActivityIndicator size="small" color="#DC2626" />
             ) : (
               <>
-                <Ionicons name="document-text-outline" size={18} color="#DC2626" />
-                <Text style={[styles.actionBtnText, styles.actionBtnTextPdf]}>PDF</Text>
+                <Ionicons
+                  name="document-text-outline"
+                  size={18}
+                  color="#DC2626"
+                />
+                <Text style={[styles.actionBtnText, styles.actionBtnTextPdf]}>
+                  PDF
+                </Text>
               </>
             )}
           </TouchableOpacity>
@@ -241,20 +264,13 @@ export default function ExpenseClaimInquiry({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Header */}
-      <PlatformGradient
-        colors={[APPCOLORS.Primary, APPCOLORS.Secondary]}
-        style={[styles.header, { paddingTop }]}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="chevron-back" color={COLORS.WHITE} size={28} />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Expense Claims</Text>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate('ExpenseClaim', { onRefresh: fetchInquiryData })} 
-          style={styles.newBtn}>
-          <Ionicons name="add" color={COLORS.WHITE} size={24} />
-        </TouchableOpacity>
-      </PlatformGradient>
+      <SimpleHeader
+        title="Expense Claims"
+        rightIcon="add"
+        onRightPress={() =>
+          navigation.navigate('ExpenseClaim', {onRefresh: fetchInquiryData})
+        }
+      />
 
       <View style={styles.inquiryContainer}>
         {/* Filter Section */}
@@ -265,8 +281,14 @@ export default function ExpenseClaimInquiry({ navigation }) {
               <TouchableOpacity
                 style={styles.filterDateBtn}
                 onPress={() => setShowFilterFromDatePicker(true)}>
-                <Ionicons name="calendar-outline" size={16} color={COLORS.AccentBlue} />
-                <Text style={styles.filterDateText}>{formatDisplayDate(filterFromDate)}</Text>
+                <Ionicons
+                  name="calendar-outline"
+                  size={16}
+                  color={COLORS.AccentBlue}
+                />
+                <Text style={styles.filterDateText}>
+                  {formatDisplayDate(filterFromDate)}
+                </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.filterField}>
@@ -274,11 +296,19 @@ export default function ExpenseClaimInquiry({ navigation }) {
               <TouchableOpacity
                 style={styles.filterDateBtn}
                 onPress={() => setShowFilterToDatePicker(true)}>
-                <Ionicons name="calendar-outline" size={16} color={COLORS.AccentBlue} />
-                <Text style={styles.filterDateText}>{formatDisplayDate(filterToDate)}</Text>
+                <Ionicons
+                  name="calendar-outline"
+                  size={16}
+                  color={COLORS.AccentBlue}
+                />
+                <Text style={styles.filterDateText}>
+                  {formatDisplayDate(filterToDate)}
+                </Text>
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.filterSearchBtn} onPress={fetchInquiryData}>
+            <TouchableOpacity
+              style={styles.filterSearchBtn}
+              onPress={fetchInquiryData}>
               <Ionicons name="search" size={18} color={COLORS.WHITE} />
             </TouchableOpacity>
           </View>
@@ -300,9 +330,15 @@ export default function ExpenseClaimInquiry({ navigation }) {
           />
         ) : (
           <View style={styles.emptyContainer}>
-            <Ionicons name="document-text-outline" size={60} color={COLORS.LabelColor} />
+            <Ionicons
+              name="document-text-outline"
+              size={60}
+              color={COLORS.LabelColor}
+            />
             <Text style={styles.emptyText}>No expense claims found</Text>
-            <Text style={styles.emptySubText}>Try adjusting the date filter or create a new claim</Text>
+            <Text style={styles.emptySubText}>
+              Try adjusting the date filter or create a new claim
+            </Text>
           </View>
         )}
 
@@ -310,7 +346,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
         <DateTimePickerModal
           isVisible={showFilterFromDatePicker}
           mode="date"
-          onConfirm={(date) => {
+          onConfirm={date => {
             setFilterFromDate(date);
             setShowFilterFromDatePicker(false);
           }}
@@ -319,7 +355,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
         <DateTimePickerModal
           isVisible={showFilterToDatePicker}
           mode="date"
-          onConfirm={(date) => {
+          onConfirm={date => {
             setFilterToDate(date);
             setShowFilterToDatePicker(false);
           }}
@@ -333,7 +369,7 @@ export default function ExpenseClaimInquiry({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: ThemeColors.Background,
   },
   header: {
     flexDirection: 'row',
@@ -365,7 +401,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 2,
@@ -387,7 +423,7 @@ const styles = StyleSheet.create({
   filterDateBtn: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F8FAFC',
+    backgroundColor: ThemeColors.Surface,
     borderRadius: 8,
     paddingHorizontal: 10,
     paddingVertical: 8,
@@ -414,7 +450,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     marginBottom: 12,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.08,
     shadowRadius: 4,
     elevation: 2,
@@ -491,7 +527,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     gap: 10,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: ThemeColors.Background,
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderTopWidth: 1,
@@ -501,13 +537,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-    backgroundColor: '#EFF6FF',
+    backgroundColor: ThemeColors.Surface,
     paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: COLORS.Border,
   },
   actionBtnPdf: {
-    backgroundColor: '#FEF2F2',
+    backgroundColor: ThemeColors.Surface,
   },
   actionBtnText: {
     fontSize: 13,
